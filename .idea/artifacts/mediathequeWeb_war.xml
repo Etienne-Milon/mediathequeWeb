@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="mediathequeWeb:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>mediathequeWeb</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="CUIB.war">
+      <element id="artifact" artifact-name="mediathequeWeb:war exploded" />
+    </root>
+  </artifact>
+</component>
