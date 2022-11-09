@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition >
+    <div class="card">
+        <h:form id="form2">
+            <p:growl id="messages"/>
+            <p:menubar>
+                <p:menuitem value="Recherche" icon="pi pi-fw pi-search" url="./faces/crud.jsf"/>
+
+                <p:submenu label="File" icon="pi pi-fw pi-file" disabled="true">
+                    <p:submenu label="New" icon="pi pi-fw pi-plus">
+                        <p:menuitem value="Recherche" icon="pi pi-fw pi-search" url="./faces/crud.jsf"/>
+                        <p:menuitem value="Video" icon="pi pi-fw pi-video"/>
+                    </p:submenu>
+                    <p:menuitem value="Delete" icon="pi pi-fw pi-trash"/>
+                    <p:divider/>
+                    <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
+                </p:submenu>
+
+                <p:submenu label="Edit" icon="pi pi-fw pi-pencil" disabled="true">
+                    <p:menuitem value="Left" icon="pi pi-fw pi-align-left"/>
+                    <p:menuitem value="Right" icon="pi pi-fw pi-align-right"/>
+                    <p:menuitem value="Center" icon="pi pi-fw pi-align-center"/>
+                    <p:menuitem value="Justify" icon="pi pi-fw pi-align-justify"/>
+                </p:submenu>
+
+                <p:submenu label="Users" icon="pi pi-fw pi-user">
+                    <p:menuitem value="New" icon="pi pi-fw pi-user-plus"/>
+                    <p:menuitem value="Delete" icon="pi pi-fw pi-user-minus"/>
+                    <p:submenu label="Search" icon="pi pi-fw pi-users">
+                        <p:submenu label="Filter" icon="pi pi-fw pi-filter">
+                            <p:menuitem value="Print" icon="pi pi-fw pi-print"/>
+                        </p:submenu>
+                        <p:menuitem value="List" icon="pi pi-fw pi-bars"/>
+                    </p:submenu>
+                </p:submenu>
+
+                <p:submenu label="Events" icon="pi pi-fw pi-calendar" disabled="true">
+                    <p:submenu label="Edit" icon="pi pi-fw pi-pencil">
+                        <p:menuitem value="Save" icon="pi pi-fw pi-calendar-plus"/>
+                        <p:menuitem value="Delete" icon="pi pi-fw pi-calendar-minus"/>
+                    </p:submenu>
+                    <p:submenu label="Archieve" icon="pi pi-fw pi-calendar-times">
+                        <p:menuitem value="Remove" icon="pi pi-fw pi-calendar-minus"/>
+                    </p:submenu>
+                </p:submenu>
+
+                <p:divider layout="vertical"/>
+
+                <p:menuitem value="Quit" icon="pi pi-fw pi-power-off" url="./index.jsf"/>
+
+                <f:facet name="options">
+                    <p:button value="Logout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
+                </f:facet>
+            </p:menubar>
+        </h:form>
+    </div>
+</ui:composition>
+</html>
