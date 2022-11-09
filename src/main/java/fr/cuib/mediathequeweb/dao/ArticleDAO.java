@@ -1,6 +1,5 @@
 package fr.cuib.mediathequeweb.dao;
 
-import fr.cuib.mediathequeweb.dao.DAO;
 import fr.cuib.mediathequeweb.metier.*;
 import fr.cuib.mediathequeweb.service.ArticleSearch;
 

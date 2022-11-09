@@ -75,9 +75,19 @@
             <version>3.0.1</version>
         </dependency>
         <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+        <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>jakarta.faces</artifactId>
             <version>4.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss</groupId>
+            <artifactId>jandex</artifactId>
+            <version>3.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.primefaces</groupId>

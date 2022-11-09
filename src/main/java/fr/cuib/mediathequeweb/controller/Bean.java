@@ -2,9 +2,16 @@ package fr.cuib.mediathequeweb.controller;
 
 import fr.cuib.mediathequeweb.dao.DaoFactory;
 import fr.cuib.mediathequeweb.metier.*;
+import fr.cuib.mediathequeweb.service.ArticleSearch;
+import fr.cuib.mediathequeweb.service.ServiceArticle;
 import jakarta.annotation.PostConstruct;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import org.primefaces.PrimeFaces;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -13,6 +20,7 @@ import java.util.List;
 public class Bean implements Serializable {
 
     private Article articleSelected;
+    private List<Article> filteredArticles;
     private Editeur editeur;
     private Etat etat;
     private Exemplaire exemplaire;
@@ -25,25 +33,27 @@ public class Bean implements Serializable {
     private Personne personne;
     private Piste piste;
     private Serie serie;
-
-    private static List<Article> allArticles;
-    private static List<Editeur> allEditeurs;
-    private static List<Reference> allEtats;
-    private static List<Exemplaire> allExemplaires;
-    private static List<Film> allFilms;
-    private static List<Reference> allFormats;
-    private static List<Reference> allGenres;
-    private static List<Langue> allLangues;
-    private static List<Livre> allLivres;
-    private static List<Reference> allMediatheques;
-    private static List<Personne> allPersonnes;
-    private static List<Piste> allPistes;
-
-
+    private  List<Article> allArticles;
+    private  List<Editeur> allEditeurs;
+    private  List<Reference> allEtats;
+    private  List<Exemplaire> allExemplaires;
+    private  List<Film> allFilms;
+    private  List<Reference> allFormats;
+    private  List<Reference> allGenres;
+    private  List<Langue> allLangues;
+    private  List<Livre> allLivres;
+    private  List<Reference> allMediatheques;
+    private  List<Personne> allPersonnes;
+    private  List<Piste> allPistes;
+    private ArticleSearch articleSearch;
 
     @PostConstruct
     private void init()
     {
+        articleSearch = new ArticleSearch();
+        articleSearch.setString("");
+        //this.filteredArticles = DaoFactory.getArticleDAO().getLike(articleSearch);
+
         allArticles = DaoFactory.getArticleDAO().getAll();
         allEditeurs = DaoFactory.getEditeurDAO().getAll();
         allEtats = DaoFactory.getEtatDAO().getAll();
@@ -57,8 +67,17 @@ public class Bean implements Serializable {
         allPersonnes = DaoFactory.getPersonneDAO().getAll();
         allPistes = DaoFactory.getPisteDAO().getAll();
 
+        this.filteredArticles = allArticles;
     }
 
+
+    public List<Article> getFilteredArticles() {
+        return filteredArticles;
+    }
+
+    public void setFilteredArticles(List<Article> filteredArticles) {
+        this.filteredArticles = filteredArticles;
+    }
     public Article getArticleSelected() {
         return articleSelected;
     }
@@ -163,99 +182,100 @@ public class Bean implements Serializable {
         this.serie = serie;
     }
 
-    public static List<Article> getAllArticles() {
+    public  List<Article> getAllArticles() {
         return allArticles;
     }
 
-    public static void setAllArticles(List<Article> allArticles) {
-        Bean.allArticles = allArticles;
+    public void setAllArticles(List<Article> allArticles) {
+        this.allArticles = allArticles;
     }
 
-    public static List<Editeur> getAllEditeurs() {
+    public  List<Editeur> getAllEditeurs() {
         return allEditeurs;
     }
 
-    public static void setAllEditeurs(List<Editeur> allEditeurs) {
-        Bean.allEditeurs = allEditeurs;
+    public  void setAllEditeurs(List<Editeur> allEditeurs) {
+        this.allEditeurs = allEditeurs;
     }
 
-    public static List<Reference> getAllEtats() {
+    public  List<Reference> getAllEtats() {
         return allEtats;
     }
 
-    public static void setAllEtats(List<Reference> allEtats) {
-        Bean.allEtats = allEtats;
+    public  void setAllEtats(List<Reference> allEtats) {
+        this.allEtats = allEtats;
     }
 
-    public static List<Exemplaire> getAllExemplaires() {
+    public  List<Exemplaire> getAllExemplaires() {
         return allExemplaires;
     }
 
-    public static void setAllExemplaires(List<Exemplaire> allExemplaires) {
-        Bean.allExemplaires = allExemplaires;
+    public  void setAllExemplaires(List<Exemplaire> allExemplaires) {
+        this.allExemplaires = allExemplaires;
     }
 
-    public static List<Film> getAllFilms() {
+    public  List<Film> getAllFilms() {
         return allFilms;
     }
 
-    public static void setAllFilms(List<Film> allFilms) {
-        Bean.allFilms = allFilms;
+    public  void setAllFilms(List<Film> allFilms) {
+        this.allFilms = allFilms;
     }
 
-    public static List<Reference> getAllFormats() {
+    public  List<Reference> getAllFormats() {
         return allFormats;
     }
 
-    public static void setAllFormats(List<Reference> allFormats) {
-        Bean.allFormats = allFormats;
+    public  void setAllFormats(List<Reference> allFormats) {
+        this.allFormats = allFormats;
     }
 
-    public static List<Reference> getAllGenres() {
+    public  List<Reference> getAllGenres() {
         return allGenres;
     }
 
-    public static void setAllGenres(List<Reference> allGenres) {
-        Bean.allGenres = allGenres;
+    public  void setAllGenres(List<Reference> allGenres) {
+        this.allGenres = allGenres;
     }
 
-    public static List<Langue> getAllLangues() {
+    public  List<Langue> getAllLangues() {
         return allLangues;
     }
 
-    public static void setAllLangues(List<Langue> allLangues) {
-        Bean.allLangues = allLangues;
+    public  void setAllLangues(List<Langue> allLangues) {
+        this.allLangues = allLangues;
     }
 
-    public static List<Livre> getAllLivres() {
+    public  List<Livre> getAllLivres() {
         return allLivres;
     }
 
-    public static void setAllLivres(List<Livre> allLivres) {
-        Bean.allLivres = allLivres;
+    public  void setAllLivres(List<Livre> allLivres) {
+        this.allLivres = allLivres;
     }
 
-    public static List<Reference> getAllMediatheques() {
+    public  List<Reference> getAllMediatheques() {
         return allMediatheques;
     }
 
-    public static void setAllMediatheques(List<Reference> allMediatheques) {
-        Bean.allMediatheques = allMediatheques;
+    public  void setAllMediatheques(List<Reference> allMediatheques) {
+        this.allMediatheques = allMediatheques;
     }
 
-    public static List<Personne> getAllPersonnes() {
+    public  List<Personne> getAllPersonnes() {
         return allPersonnes;
     }
 
-    public static void setAllPersonnes(List<Personne> allPersonnes) {
-        Bean.allPersonnes = allPersonnes;
+    public  void setAllPersonnes(List<Personne> allPersonnes) {
+        this.allPersonnes = allPersonnes;
     }
 
-    public static List<Piste> getAllPistes() {
+    public  List<Piste> getAllPistes() {
         return allPistes;
     }
 
-    public static void setAllPistes(List<Piste> allPistes) {
-        Bean.allPistes = allPistes;
+    public  void setAllPistes(List<Piste> allPistes) {
+        this.allPistes = allPistes;
     }
+
 }

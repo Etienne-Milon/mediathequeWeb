@@ -1,10 +1,10 @@
 package fr.cuib.mediathequeweb.dao;
 
+import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 
 public class CUIBConnect {
-
     private static Connection connexion;
 
     private CUIBConnect() {
@@ -13,10 +13,15 @@ public class CUIBConnect {
     public static Connection getInstance() {
         if (connexion == null) {
             try {
-                String dbURL = "jdbc:sqlserver://127.0.0.1:1404;databaseName=CUIB;encrypt=false";
-                String user = "sa";
-                String pass = "azerty@private123";
-                connexion = DriverManager.getConnection(dbURL, user, pass);
+                SQLServerDataSource ds = new SQLServerDataSource();
+                ds.setServerName("127.0.0.1");
+                ds.setPortNumber(1404);
+                ds.setDatabaseName("CUIB");
+                ds.setIntegratedSecurity(false);
+                ds.setEncrypt(false);
+                ds.setUser("sa");
+                ds.setPassword("azerty@private123");
+                connexion = ds.getConnection();
             }
 
             // Handle any errors that may have occurred.

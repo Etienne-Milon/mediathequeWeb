@@ -1,9 +1,10 @@
 package fr.cuib.mediathequeweb.metier;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-public class Article {
+public class Article implements Serializable {
 
     private Reference editeur;
     private ArrayList<Reference> genres;
