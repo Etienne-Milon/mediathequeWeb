@@ -1,7 +1,9 @@
 package fr.cuib.mediathequeweb.service;
 
-import dao.DaoFactory;
-import metier.*;
+import fr.cuib.mediathequeweb.dao.DaoFactory;
+
+import fr.cuib.mediathequeweb.metier.*;
+
 
 import java.util.ArrayList;
 
