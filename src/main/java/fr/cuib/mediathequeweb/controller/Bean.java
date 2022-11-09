@@ -3,15 +3,9 @@ package fr.cuib.mediathequeweb.controller;
 import fr.cuib.mediathequeweb.dao.DaoFactory;
 import fr.cuib.mediathequeweb.metier.*;
 import fr.cuib.mediathequeweb.service.ArticleSearch;
-import fr.cuib.mediathequeweb.service.ServiceArticle;
 import jakarta.annotation.PostConstruct;
-import jakarta.faces.application.FacesMessage;
-import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import org.primefaces.PrimeFaces;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -277,5 +271,4 @@ public class Bean implements Serializable {
     public  void setAllPistes(List<Piste> allPistes) {
         this.allPistes = allPistes;
     }
-
 }
