@@ -3,11 +3,15 @@ package fr.cuib.mediathequeweb.controller;
 import fr.cuib.mediathequeweb.dao.DaoFactory;
 import fr.cuib.mediathequeweb.metier.*;
 import fr.cuib.mediathequeweb.service.ArticleSearch;
+import fr.cuib.mediathequeweb.service.ArticleSearch;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 @Named("bean")
 @ViewScoped
@@ -27,18 +31,23 @@ public class Bean implements Serializable {
     private Personne personne;
     private Piste piste;
     private Serie serie;
-    private  List<Article> allArticles;
-    private  List<Editeur> allEditeurs;
-    private  List<Reference> allEtats;
-    private  List<Exemplaire> allExemplaires;
-    private  List<Film> allFilms;
-    private  List<Reference> allFormats;
-    private  List<Reference> allGenres;
-    private  List<Langue> allLangues;
-    private  List<Livre> allLivres;
-    private  List<Reference> allMediatheques;
-    private  List<Personne> allPersonnes;
-    private  List<Piste> allPistes;
+
+    private List<Article> allArticles;
+    private List<Editeur> allEditeurs;
+    private List<Reference> allEtats;
+    private List<Exemplaire> allExemplaires;
+    private List<Film> allFilms;
+    private List<Reference> allFormats;
+    private List<Reference> allGenres;
+    private List<Langue> allLangues;
+    private List<Livre> allLivres;
+    private List<Reference> allMediatheques;
+    private List<Personne> allPersonnes;
+    private List<Piste> allPistes;
+    private List<Article> recommandedArticles;
+    private List<Integer> listFilm = new ArrayList<>(Arrays.asList(1,2,3));
+    private List<Integer> listLivre = new ArrayList<>(Arrays.asList(4,5,6));
+    private List<Integer> listMusique = new ArrayList<>(Arrays.asList(7,8,9));
     private ArticleSearch articleSearch;
 
     @PostConstruct
@@ -60,6 +69,7 @@ public class Bean implements Serializable {
         allMediatheques = DaoFactory.getMediathequeDAO().getAll();
         allPersonnes = DaoFactory.getPersonneDAO().getAll();
         allPistes = DaoFactory.getPisteDAO().getAll();
+        recommandedArticles = randomRecommandedArticles();
 
         this.filteredArticles = allArticles;
     }
@@ -176,7 +186,7 @@ public class Bean implements Serializable {
         this.serie = serie;
     }
 
-    public  List<Article> getAllArticles() {
+    public List<Article> getAllArticles() {
         return allArticles;
     }
 
@@ -184,51 +194,51 @@ public class Bean implements Serializable {
         this.allArticles = allArticles;
     }
 
-    public  List<Editeur> getAllEditeurs() {
+    public List<Editeur> getAllEditeurs() {
         return allEditeurs;
     }
 
-    public  void setAllEditeurs(List<Editeur> allEditeurs) {
+    public void setAllEditeurs(List<Editeur> allEditeurs) {
         this.allEditeurs = allEditeurs;
     }
 
-    public  List<Reference> getAllEtats() {
+    public List<Reference> getAllEtats() {
         return allEtats;
     }
 
-    public  void setAllEtats(List<Reference> allEtats) {
+    public void setAllEtats(List<Reference> allEtats) {
         this.allEtats = allEtats;
     }
 
-    public  List<Exemplaire> getAllExemplaires() {
+    public List<Exemplaire> getAllExemplaires() {
         return allExemplaires;
     }
 
-    public  void setAllExemplaires(List<Exemplaire> allExemplaires) {
+    public void setAllExemplaires(List<Exemplaire> allExemplaires) {
         this.allExemplaires = allExemplaires;
     }
 
-    public  List<Film> getAllFilms() {
+    public List<Film> getAllFilms() {
         return allFilms;
     }
 
-    public  void setAllFilms(List<Film> allFilms) {
+    public void setAllFilms(List<Film> allFilms) {
         this.allFilms = allFilms;
     }
 
-    public  List<Reference> getAllFormats() {
+    public List<Reference> getAllFormats() {
         return allFormats;
     }
 
-    public  void setAllFormats(List<Reference> allFormats) {
+    public void setAllFormats(List<Reference> allFormats) {
         this.allFormats = allFormats;
     }
 
-    public  List<Reference> getAllGenres() {
+    public List<Reference> getAllGenres() {
         return allGenres;
     }
 
-    public  void setAllGenres(List<Reference> allGenres) {
+    public void setAllGenres(List<Reference> allGenres) {
         this.allGenres = allGenres;
     }
 
@@ -236,19 +246,19 @@ public class Bean implements Serializable {
         return allLangues;
     }
 
-    public  void setAllLangues(List<Langue> allLangues) {
+    public void setAllLangues(List<Langue> allLangues) {
         this.allLangues = allLangues;
     }
 
-    public  List<Livre> getAllLivres() {
+    public List<Livre> getAllLivres() {
         return allLivres;
     }
 
-    public  void setAllLivres(List<Livre> allLivres) {
+    public void setAllLivres(List<Livre> allLivres) {
         this.allLivres = allLivres;
     }
 
-    public  List<Reference> getAllMediatheques() {
+    public List<Reference> getAllMediatheques() {
         return allMediatheques;
     }
 
@@ -256,19 +266,61 @@ public class Bean implements Serializable {
         this.allMediatheques = allMediatheques;
     }
 
-    public  List<Personne> getAllPersonnes() {
+    public List<Personne> getAllPersonnes() {
         return allPersonnes;
     }
 
-    public  void setAllPersonnes(List<Personne> allPersonnes) {
+    public void setAllPersonnes(List<Personne> allPersonnes) {
         this.allPersonnes = allPersonnes;
     }
 
-    public  List<Piste> getAllPistes() {
+    public List<Piste> getAllPistes() {
         return allPistes;
     }
 
-    public  void setAllPistes(List<Piste> allPistes) {
+    public void setAllPistes(List<Piste> allPistes) {
         this.allPistes = allPistes;
+    }
+
+    public List<Article> getRecommandedArticles() {
+        return recommandedArticles;
+    }
+
+    public void setRecommandedArticles(List<Article> recommandedArticles) {
+        this.recommandedArticles = recommandedArticles;
+    }
+
+    public List<Integer> getListFilm() {
+        return listFilm;
+    }
+
+    public void setListFilm(List<Integer> listFilm) {
+        this.listFilm = listFilm;
+    }
+
+    public List<Integer> getListLivre() {
+        return listLivre;
+    }
+
+    public void setListLivre(List<Integer> listLivre) {
+        this.listLivre = listLivre;
+    }
+
+    public List<Integer> getListMusique() {
+        return listMusique;
+    }
+
+    public void setListMusique(List<Integer> listMusique) {
+        this.listMusique = listMusique;
+    }
+
+    private List<Article> randomRecommandedArticles(){
+        List<Article> list = new ArrayList<>();
+        Random random = new Random();
+        for(int i = 0; i < 8; i++){
+            Article articleRecommanded = allArticles.get(random.nextInt(allArticles.size()));
+            list.add(articleRecommanded);
+        }
+        return list;
     }
 }

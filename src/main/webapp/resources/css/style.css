@@ -1,3 +1,43 @@
+html, body{
+    font-family: Arial;
+    margin: 0px;
+}
+.navbar{
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+    border: solid black 2px;
+}
+.navbar > :nth-child(1){
+    height: 70%;
+    border: solid green 2px;
+}
+
+.navbar > :nth-child(2){
+    height: 30%;
+    border: solid red 2px;
+}
+
+.backgroundImage{
+    display: flex;
+    justify-content: center;
+    height: 50vh;
+    background-image: url("https://as2.ftcdn.net/v2/jpg/02/64/75/01/1000_F_264750103_j3pG3e64zgaDj8iaDhbVvSEXyxEUctpB.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+#footer{
+    height: 25vh;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1,h2,h3,h4,h5,h6{
+    margin: 0;
+}
 .ui-panelgrid.showcase-text-align-center .ui-grid-responsive .ui-panelgrid-cell {
     text-align: center;
 }
