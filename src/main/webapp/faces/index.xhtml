@@ -28,15 +28,14 @@
           <div>
               <h1 style="margin-left: 10vw">TITRE</h1>
           </div>
-          <div style="height: 100vh; border: solid 2px black; padding-left: 10vw; padding-right: 10vw;">
-              <p:carousel value="#{bean.recommandedArticles}" var="article" circular="true" autoplayInterval="3000"
+          <div style="border: solid 2px black; padding: 5vw 10vw 0 10vw;">
+              <p:carousel  indicatorsContentStyleClass="indicatorNone" value="#{bean.recommandedArticles}" var="article" circular="true" autoplayInterval="3000"
                           numVisible="3" numScroll="1">
-
                   <div class="product-item">
-                      <div class="product-item-content" style="border: solid 1px lightgray; text-align: center; margin: 0.3vw">
+                      <div class="product-item-content" style="text-align: center; margin: 0.3vw">
                           <div>
-                              <h2 class="mb-1">#{article.titre}</h2>
                               <img src="https://via.placeholder.com/150x220" alt="picture"/>
+                              <h3 class="mb-1">#{article.titre}</h3>
                               <h4 class="mt-0 mb-3">
                                   <h:outputText value="#{article.format.nom}"/>
                               </h4>

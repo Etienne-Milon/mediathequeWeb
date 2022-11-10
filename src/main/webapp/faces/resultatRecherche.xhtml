@@ -9,10 +9,7 @@
 
 
 <ui:composition template="templates/layouts.xhtml">
-    <ui:define name="menu">
-        MENU BAR
-    </ui:define>
-
+   <f:view beforePhase="#{menuBean.addItemToMenuModel('Articles', '/resultatRecherche.xhtml', true)}"/>
     <ui:define name="contenu">
         <div class="product card">
             <h:form id="form">
@@ -22,7 +19,7 @@
                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
                     <p:dataViewListItem>
                         <div class="product-list-item">
-                            <a href="faces/detailsArticle.xhtml?id=#{article.EAN13}">
+                            <a href="./detailsArticle.xhtml?id=#{article.EAN13}">
                                 <img src="https://api.lorem.space/image/movie?w=150&amp;h=150" alt="pas d'image"/>
                             </a>
                             <div class="product-list-detail">
@@ -40,8 +37,8 @@
         </div>
     </ui:define>
 
-    <ui:define name="pied">
-        FOOTER
-    </ui:define>
+   <ui:define name="pied">
+      FOOTER
+   </ui:define>
 </ui:composition>
 </html>

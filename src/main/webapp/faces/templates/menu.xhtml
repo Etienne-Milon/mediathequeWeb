@@ -9,8 +9,27 @@
 
 <ui:composition >
     <div class="navbar">
-        <div></div>
-        <div></div>
+        <div>
+            <div>
+                <img src="https://via.placeholder.com/256x60.png" alt=""/>
+            </div>
+            <div style="width: 40vw">
+                <div class="col-12 md:col-4" style="margin-left: 10vw">
+                    <div class="ui-inputgroup ui-float-label">
+                        <p:inputText id="float-input" value="#{inputTextView.text}" style="width: 100%"/>
+                        <p:outputLabel for="@previous" value="Recherche"/>
+                        <p:commandButton icon="pi pi-search" styleClass="ui-button-secondary ui-button-flat"
+                                         style="border-top: solid 1px #ced4da; border-right: solid 1px #ced4da;border-bottom: solid 1px #ced4da"/>
+                    </div>
+                </div>
+            </div>
+            <div></div>
+        </div>
+        <div class="card" style="border-top: solid black 1px; border-bottom: solid black 1px">
+            <h:form>
+                <p:breadCrumb widgetVar="bar" model="#{menuBean.bar}" style="border: none"/>
+            </h:form>
+        </div>
     </div>
 <!--    <div class="card">-->
 <!--        <h:form id="form2">-->

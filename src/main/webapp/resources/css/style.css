@@ -6,17 +6,18 @@ html, body{
     display: flex;
     flex-direction: column;
     height: 20vh;
-    border: solid black 2px;
+    /*border: solid black 2px;*/
 }
 .navbar > :nth-child(1){
+    display: flex;
+    align-items: center;
     height: 70%;
-    border: solid green 2px;
+    /*border: solid green 2px;*/
 }
 
-.navbar > :nth-child(2){
-    height: 30%;
-    border: solid red 2px;
-}
+/*.navbar > :nth-child(2){*/
+/*    border: solid red 2px;*/
+/*}*/
 
 .backgroundImage{
     display: flex;
@@ -45,3 +46,32 @@ h1,h2,h3,h4,h5,h6{
 .customPanelGrid .ui-panelgrid-content {
     align-items: center;
 }
+
+.ui-carousel-container{
+    height: 50vh;
+}
+
+.ui-carousel-indicators{
+    margin-top: 2vw;
+    padding: 0 !important;
+    visibility: hidden !important;
+}
+
+.ui-carousel-item-active{
+    transform: scale(1.3);
+    transition-duration: 0.5s;
+}
+
+.ui-carousel-item-start{
+    transform: scale(1) !important;
+    filter: blur(1px);
+}
+
+.ui-carousel-item-end{
+    transform: scale(1) !important;
+    filter: blur(1px);
+}
+
+/*.ui-carousel-indicator{*/
+/*    visibility: hidden !important;*/
+/*}*/
