@@ -5,6 +5,7 @@ import fr.cuib.mediathequeweb.metier.*;
 import fr.cuib.mediathequeweb.service.ArticleSearch;
 import fr.cuib.mediathequeweb.service.ArticleSearch;
 import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
@@ -14,7 +15,7 @@ import java.io.Serializable;
 import java.util.*;
 
 @Named("bean")
-@ViewScoped
+@SessionScoped
 public class Bean implements Serializable {
 
     private Article articleSelected;
@@ -30,7 +31,6 @@ public class Bean implements Serializable {
     private Personne personne;
     private Piste piste;
     private Serie serie;
-
     private List<Article> allArticles;
     private List<Editeur> allEditeurs;
     private List<Reference> allEtats;
@@ -55,12 +55,7 @@ public class Bean implements Serializable {
     @PostConstruct
     private void init()
     {
-        articleSearch = new ArticleSearch();
-        articleSearch.setString("");
-        articleSearch.setFormat(new Reference());
-        articleSearch.setGenre(new Reference());
-        articleSearch.setMediatheque(new Reference());
-        this.filteredArticles = DaoFactory.getArticleDAO().getLike(articleSearch);
+        this.articleSearch = new ArticleSearch();
 
         allArticles = DaoFactory.getArticleDAO().getAll();
         allEditeurs = DaoFactory.getEditeurDAO().getAll();
@@ -75,8 +70,28 @@ public class Bean implements Serializable {
         allPersonnes = DaoFactory.getPersonneDAO().getAll();
         allPistes = DaoFactory.getPisteDAO().getAll();
         recommandedArticles = randomRecommandedArticles();
+    }
 
-        //this.filteredArticles = allArticles;
+    public void goNext(){
+        this.articleSearch.setFormat(new Reference());
+        this.articleSearch.setGenre(new Reference());
+        this.articleSearch.setMediatheque(new Reference());
+
+        this.filteredArticles = DaoFactory.getArticleDAO().getLike(articleSearch);
+
+        try{
+            FacesContext.getCurrentInstance().getExternalContext().redirect("./faces/resultatRecherche.xhtml");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public ArticleSearch getArticleSearch() {
+        return articleSearch;
+    }
+
+    public void setArticleSearch(ArticleSearch articleSearch) {
+        this.articleSearch = articleSearch;
     }
 
     public String getId() {
