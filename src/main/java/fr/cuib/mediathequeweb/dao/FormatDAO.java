@@ -15,8 +15,24 @@ public class FormatDAO extends DAO<Reference, Object> {
 
     @Override
     public Reference getById(long ean13) {
-        return null;
+        String query = "SELECT format.id_format, format.libelle FROM ARTICLE JOIN format ON ARTICLE.id_format = format.id_format WHERE ARTICLE.EAN13 = ?";
+        ResultSet rs;
+        Format format = new Format();
+        try (PreparedStatement stmt = connexion.prepareStatement(query)) {
+            stmt.setLong(1, ean13);
+            stmt.execute();
+            rs = stmt.getResultSet();
+            while (rs.next()) {
+                format.setId(rs.getInt(1));
+                format.setNom(rs.getString(2));
+            }
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return format;
     }
+
 
     @Override
     public ArrayList<Reference> getAll() {

@@ -5,13 +5,11 @@ import fr.cuib.mediathequeweb.metier.*;
 import fr.cuib.mediathequeweb.service.ArticleSearch;
 import fr.cuib.mediathequeweb.service.ArticleSearch;
 import jakarta.annotation.PostConstruct;
+import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Named("bean")
 @ViewScoped
@@ -21,7 +19,6 @@ public class Bean implements Serializable {
     private List<Article> filteredArticles;
     private Editeur editeur;
     private Etat etat;
-    private Exemplaire exemplaire;
     private Film film;
     private Format format;
     private Genre genre;
@@ -50,12 +47,18 @@ public class Bean implements Serializable {
     private List<Integer> listMusique = new ArrayList<>(Arrays.asList(7,8,9));
     private ArticleSearch articleSearch;
 
+    /* id = EAN13 issu de l'URL*/
+    private String id;
+
     @PostConstruct
     private void init()
     {
         articleSearch = new ArticleSearch();
         articleSearch.setString("");
-        //this.filteredArticles = DaoFactory.getArticleDAO().getLike(articleSearch);
+        articleSearch.setFormat(new Reference());
+        articleSearch.setGenre(new Reference());
+        articleSearch.setMediatheque(new Reference());
+        this.filteredArticles = DaoFactory.getArticleDAO().getLike(articleSearch);
 
         allArticles = DaoFactory.getArticleDAO().getAll();
         allEditeurs = DaoFactory.getEditeurDAO().getAll();
@@ -71,9 +74,31 @@ public class Bean implements Serializable {
         allPistes = DaoFactory.getPisteDAO().getAll();
         recommandedArticles = randomRecommandedArticles();
 
-        this.filteredArticles = allArticles;
+        //this.filteredArticles = allArticles;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void displayParam() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
+        id =  params.get("id");
+        initArticleSelected(id);
+    }
+
+    public void initArticleSelected(String ean13String){
+        Long ean13 = Long.parseLong(ean13String);
+        articleSelected = DaoFactory.getArticleDAO().getById(ean13);
+        articleSelected.setFormat(DaoFactory.getFormatDAO().getById(ean13));
+        articleSelected.setEditeur(DaoFactory.getEditeurDAO().getById(ean13));
+        articleSelected.setExemplaires(DaoFactory.getExemplaireDAO().getExemplaireById(ean13));
+    }
 
     public List<Article> getFilteredArticles() {
         return filteredArticles;
@@ -106,13 +131,6 @@ public class Bean implements Serializable {
         this.etat = etat;
     }
 
-    public Exemplaire getExemplaire() {
-        return exemplaire;
-    }
-
-    public void setExemplaire(Exemplaire exemplaire) {
-        this.exemplaire = exemplaire;
-    }
 
     public Film getFilm() {
         return film;

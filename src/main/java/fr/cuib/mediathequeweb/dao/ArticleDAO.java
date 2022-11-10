@@ -14,7 +14,23 @@ public class ArticleDAO extends DAO<Article, ArticleSearch>
 
     @Override
     public Article getById(long ean13) {
-        return null;
+        String query = "SELECT * FROM ARTICLE WHERE EAN13 = ?";
+        ResultSet rs;
+        Article articleBis = new Article();
+        try (PreparedStatement stmt = connexion.prepareStatement(query)) {
+            stmt.setLong(1, ean13);
+            stmt.execute();
+            rs = stmt.getResultSet();
+            while (rs.next()) {
+                articleBis.setEAN13(rs.getLong(1));
+                articleBis.setTitre(rs.getString(3));
+                articleBis.setFormat(new Format(rs.getInt(5),rs.getString(6)));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return articleBis;
     }
 
     public Article getById(Article article) {

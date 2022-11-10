@@ -1,6 +1,8 @@
 package fr.cuib.mediathequeweb.metier;
 
-public class Exemplaire  {
+import java.io.Serializable;
+
+public class Exemplaire implements Serializable {
 
 
     public Exemplaire(){}

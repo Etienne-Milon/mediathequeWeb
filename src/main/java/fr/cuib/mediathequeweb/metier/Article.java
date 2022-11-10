@@ -15,7 +15,8 @@ public class Article implements Serializable {
     private String titre;
 
     private ArrayList<Piste> listePiste;
-    private ArrayList<Exemplaire> listeExemplaire;
+
+    private ArrayList<Exemplaire> exemplaires;
     private BigDecimal prixAchat;
     private Boolean grandeValeur;
     private Film film;
@@ -84,12 +85,12 @@ public class Article implements Serializable {
         return mediatheques;
     }
 
-    public void setExemplaire(ArrayList<Exemplaire> listeExemplaire) {
-        this.listeExemplaire = listeExemplaire;
+    public ArrayList<Exemplaire> getExemplaires() {
+        return exemplaires;
     }
 
-    public ArrayList<Exemplaire> getListeExemplaire() {
-        return listeExemplaire;
+    public void setExemplaires(ArrayList<Exemplaire> exemplaires) {
+        this.exemplaires = exemplaires;
     }
 
     public void setMediatheque(ArrayList<Reference> mediatheques) {

@@ -20,6 +20,7 @@
                   <div >
                       <div>
                       <img src="https://api.lorem.space/image/movie?w=150&amp;h=220" alt=""/>
+                          #{bean.displayParam()}
                       </div>
                   <p:panelGrid columns="2">
 
@@ -30,10 +31,10 @@
                       <h:outputText value="#{bean.articleSelected.EAN13}"/>
 
                       <h:outputText value="Format :"/>
-                      <h:outputText value="#{bean.articleSelected.format}"/>
+                      <h:outputText value="#{bean.articleSelected.format.nom}"/>
 
                       <h:outputText value="Editeur :"/>
-                      <h:outputText value="#{bean.articleSelected.editeur}"/>
+                      <h:outputText value="#{bean.articleSelected.editeur.nom}"/>
                   </p:panelGrid>
                   </div>
               </div>
@@ -62,17 +63,17 @@
 
                       </div>
                   <div class="card">
-                      <p:dataTable var="product" value="#{bean.allExemplaires}" showGridlines="true">
+                      <p:dataTable var="exemplaire" value="#{bean.articleSelected.exemplaires}" showGridlines="true">
                           <p:column headerText="Site">
-                              <h:outputText value="#{bean.exemplaire.mediatheque}" />
+                              <h:outputText value="#{exemplaire.mediatheque.nom}" />
                           </p:column>
 
                           <p:column headerText="Numéro d'exemplaire">
-                              <h:outputText value="#{bean.exemplaire.numExemplaire}" />
+                              <h:outputText value="#{exemplaire.numExemplaire}" />
                           </p:column>
 
                           <p:column headerText="Etat">
-                              <h:outputText value="#{bean.exemplaire.etat}" />
+                              <h:outputText value="#{exemplaire.etat.nom}" />
                           </p:column>
 
                           <p:column headerText="Date retour">
