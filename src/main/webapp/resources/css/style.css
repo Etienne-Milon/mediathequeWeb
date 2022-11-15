@@ -155,14 +155,9 @@ li:not(.ui-breadcrumb-chevron):before{
     filter: blur(1px);
 }
 
-.avis {
+.avis{
     border: 1px solid cornflowerblue;
-    margin:20px;
     padding: 10px;
     border-radius: 10px;
     width: 30%;
-}
-
-form {
-    margin-left: 30px;
 }

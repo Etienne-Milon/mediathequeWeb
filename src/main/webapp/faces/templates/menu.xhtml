@@ -7,24 +7,25 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-<ui:composition >
+<ui:composition>
     <div class="navbar">
         <div>
             <div style="width: 20vw; display: flex; justify-content: center; align-items: center">
                 <img src="../resources/img/Cuib.png" alt="icon" style="width: 35vh"/>
             </div>
-                <div style="width: 40vw">
-                    <div class="col-12 md:col-4" style="margin-left: 10vw">
-                        <h:form>
-                            <div class="ui-inputgroup ui-float-label">
-                                <p:inputText id="float-input" value="#{bean.articleSearch.string}" style="width: 100%"/>
-                                <p:outputLabel for="@previous" value="Recherche"/>
-                                <p:commandButton icon="pi pi-search" styleClass="ui-button-secondary ui-button-flat" action="#{bean.goNext()}"
-                                                 style="border-top: solid 1px #ced4da; border-right: solid 1px #ced4da;border-bottom: solid 1px #ced4da"/>
-                            </div>
-                        </h:form>
-                    </div>
+            <div style="width: 40vw">
+                <div class="col-12 md:col-4" style="margin-left: 10vw">
+                    <h:form>
+                        <div class="ui-inputgroup ui-float-label">
+                            <p:inputText id="float-input" value="#{bean.articleSearch.string}" style="width: 100%"/>
+                            <p:outputLabel for="@previous" value="Recherche"/>
+                            <p:commandButton icon="pi pi-search" styleClass="ui-button-secondary ui-button-flat"
+                                             action="#{bean.goNext()}"
+                                             style="border-top: solid 1px #ced4da; border-right: solid 1px #ced4da;border-bottom: solid 1px #ced4da"/>
+                        </div>
+                    </h:form>
                 </div>
+            </div>
             <div></div>
         </div>
         <div class="card">

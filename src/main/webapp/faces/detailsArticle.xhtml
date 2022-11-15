@@ -22,14 +22,12 @@
         <div class="card" style="display: flex; justify-content: center; margin: 5vh 0 5vh 0">
             <div style="display: flex">
                 <img src="https://api.lorem.space/image/movie?w=150&amp;h=220" alt=""/>
-                #{bean.displayParam()}
-
+                    #{bean.displayParam()}
                 <p:panelGrid columns="2">
-
                     <h:outputText value="Titre :"/>
                     <h:outputText value="#{bean.articleSelected.titre}"/>
 
-                    <h:outputText value="EAN :"/>
+                    <h:outputText value="Référence :"/>
                     <h:outputText value="#{bean.articleSelected.EAN13}"/>
 
                     <h:outputText value="Format :"/>
@@ -40,7 +38,6 @@
                 </p:panelGrid>
             </div>
         </div>
-
         <div style="margin: 0 10vw 3vw 10vw">
             <p:accordionPanel multiple="true" widgetVar="multiple" activeIndex="0,1">
                 <p:tab title="Description">
@@ -55,28 +52,26 @@
                         <p:column headerText="Site">
                             <h:outputText value="#{exemplaire.mediatheque.nom}"/>
                         </p:column>
-
                         <p:column headerText="Numéro d'exemplaire">
                             <h:outputText value="#{exemplaire.numExemplaire}"/>
                         </p:column>
-
                         <p:column headerText="Etat">
                             <h:outputText value="#{exemplaire.etat.nom}"/>
                         </p:column>
-
                         <p:column headerText="Date retour">
                             <h:outputText value="Retour prévu le 12/12/2023"/>
                         </p:column>
                     </p:dataTable>
                 </p:tab>
             </p:accordionPanel>
-            <br/>
-            <p:commandButton type="button" value="Réserver" styleClass="ui-button-success" style="margin-left: 35vw"/>
         </div>
-        <div class="card" style="display: flex;margin: 0 10vw 3vw 10vw">
+
+        <hr/>
+
+        <h1 class="titreSection" style="margin-bottom: 3vh">AVIS</h1>
+        <div class="card" style="display: flex;margin: 0 10vw 3vw 10vw; justify-content: space-between">
             <div class="avis">
                 <p:growl id="message1" showDetail="true"/>
-
                 <h4>#{bean.prenomClient()}</h4>
                 <p:avatar icon="pi pi-user" styleClass="mr-2" size="xlarge" shape="circle" />
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -84,11 +79,11 @@
                 <p:rating value="#{bean.avisClient()}" readonly="true"/>
             </div>
 
-            <div class="avis">
+            <div class="avis" >
                 <p:growl id="message2" showDetail="true"/>
 
                 <h4>#{bean.prenomClient()}</h4>
-                <p:avatar icon="pi pi-user" styleClass="mr-2" size="xlarge" shape="circle" />
+                <p:avatar icon="pi pi-user" styleClass="mr-2" size="xlarge" shape="circle"/>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                     quis nostrud exercitation ullamco.</p>
                 <p:rating value="#{bean.avisClient()}" readonly="true"/>
@@ -104,11 +99,10 @@
                 <p:rating value="#{bean.avisClient()}" readonly="true"/>
             </div>
         </div>
-        <br/>
-        <h3 style="margin-left:10vw">Votre avis nous intéresse </h3>
-        <h:form>
-            <div class="card" style="margin: 0 10vw 3vw 10vw;display: flex;justify-content: space-around">
-                <div>
+        <h3 style="margin-left:10vw; margin-bottom: 3vh">Votre avis nous intéresse  </h3>
+        <h:form >
+            <div class="card" style="margin: 0 10vw 3vw 10vw;display: flex; justify-content: space-between">
+                <div style="display: flex; flex-direction: column; justify-content: space-between; width: 30%">
                     <h5>Nom :</h5>
                     <p:inputText/>
                     <h5>Prénom :</h5>
@@ -116,17 +110,13 @@
                     <h5>Email :</h5>
                     <p:inputText/>
                 </div>
-                <div>
+                <div style="display: flex; flex-direction: column; width: 70%; margin-left: 5vw">
                     <h5>Commentaire :</h5>
-                    <p:inputTextarea style="margin-bottom: 7vh" rows="6" cols="33"/><br/>
-                    <p:button value="Envoyer" styleClass="ui-button-raised ui-button-success"/>
+                    <p:inputTextarea rows="6" cols="33"/>
+                    <p:button value="Envoyer" styleClass="ui-button-raised ui-button-success" style="width: 10vw; align-self: flex-end; margin-top: 2vh" />
                 </div>
-
-
             </div>
-
         </h:form>
-        <br/>
     </ui:define>
 </ui:composition>
 </html>
