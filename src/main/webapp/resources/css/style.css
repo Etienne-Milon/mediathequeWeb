@@ -5,25 +5,22 @@ html, body{
 .navbar{
     display: flex;
     flex-direction: column;
-    height: 20vh;
-    /*border: solid black 2px;*/
 }
 .product-list-item{
     display: flex;
     flex-direction: row;
-    align-items: center;
-    padding: 1%;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
 }
 .product-list-detail{
-    padding: 2%;
+    padding-left: 2vw;
 }
 
 .ui-dataview-header{
     display: none;
 }
 .ui-dataview-row{
-    padding-left: 15%;
-
+    padding-left: 10vw;
 }
 .navbar > :nth-child(1){
     margin-top: 3vh;
@@ -144,7 +141,7 @@ li:not(.ui-breadcrumb-chevron):before{
 }
 
 .ui-carousel-item-active{
-    transform: scale(1.3);
+    transform: scale(1.1);
     transition-duration: 0.5s;
 }
 
@@ -157,7 +154,3 @@ li:not(.ui-breadcrumb-chevron):before{
     transform: scale(1) !important;
     filter: blur(1px);
 }
-
-/*.ui-carousel-indicator{*/
-/*    visibility: hidden !important;*/
-/*}*/

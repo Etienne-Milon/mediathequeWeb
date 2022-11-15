@@ -18,75 +18,103 @@
 
 
     <ui:define name="contenu">
-              <h2 style="margin-top:0">Détails de l'article :</h2>
-              <div class="card" style="display: flex; justify-content: center; ">
+        <h1 class="titreSection">DETAILS</h1>
+        <div class="card" style="display: flex; justify-content: center; margin: 5vh 0 5vh 0">
+            <div style="display: flex">
+                <img src="https://api.lorem.space/image/movie?w=150&amp;h=220" alt=""/>
 
-                  <div >
-                      <div>
-                      <img src="https://api.lorem.space/image/movie?w=150&amp;h=220" alt=""/>
-                          #{bean.displayParam()}
-                      </div>
-                  <p:panelGrid columns="2">
+<!--                <div>-->
+<!--                    <img src="https://api.lorem.space/image/movie?w=150&amp;h=220" alt=""/>-->
+<!--                    #{bean.displayParam()}-->
+<!--                </div>-->
+                <p:panelGrid columns="2">
 
-                      <h:outputText value="Titre :"/>
-                      <h:outputText value="#{bean.articleSelected.titre}"/>
+                    <h:outputText value="Titre :"/>
+                    <h:outputText value="#{bean.articleSelected.titre}"/>
 
-                      <h:outputText value="EAN :"/>
-                      <h:outputText value="#{bean.articleSelected.EAN13}"/>
+                    <h:outputText value="Référence :"/>
+                    <h:outputText value="#{bean.articleSelected.EAN13}"/>
 
-                      <h:outputText value="Format :"/>
-                      <h:outputText value="#{bean.articleSelected.format.nom}"/>
+                    <h:outputText value="Format :"/>
+                    <h:outputText value="#{bean.articleSelected.format.nom}"/>
 
-                      <h:outputText value="Editeur :"/>
-                      <h:outputText value="#{bean.articleSelected.editeur.nom}"/>
-                  </p:panelGrid>
-                  </div>
-              </div>
-              <br/><br/><br/>
-              <div>
-                  <p:panel header="Description" toggleable="true" closable="true" toggleSpeed="500"
-                           closeSpeed="500" widgetVar="panel">
+                    <h:outputText value="Editeur :"/>
+                    <h:outputText value="#{bean.articleSelected.editeur.nom}"/>
+                </p:panelGrid>
+            </div>
+        </div>
+        <div style="margin: 0 10vw 3vw 10vw">
+<!--            <p:panel header="Description" toggleable="true" toggleSpeed="500"-->
+<!--                     closeSpeed="500" widgetVar="panel">-->
+<!--                <p class="m-0">-->
+<!--                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,-->
+<!--                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum-->
+<!--                    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur-->
+<!--                    sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.-->
+<!--                </p>-->
+<!--            </p:panel>-->
 
-                      <p class="m-0">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                          dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur
-                          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                      </p>
+            <p:accordionPanel multiple="true" widgetVar="multiple" activeIndex="0,1">
+                <p:tab title="Description">
+                    <p class="m-0">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </p:tab>
+                <p:tab title="Exemplaires">
+                    <p:dataTable var="exemplaire" value="#{bean.articleSelected.exemplaires}" showGridlines="true">
+                        <p:column headerText="Site">
+                            <h:outputText value="#{exemplaire.mediatheque.nom}"/>
+                        </p:column>
 
-                  </p:panel>
-              </div>
-              <h3 style="margin-top:0">Où le trouver ? :</h3>
-              <h:form>
+                        <p:column headerText="Numéro d'exemplaire">
+                            <h:outputText value="#{exemplaire.numExemplaire}"/>
+                        </p:column>
 
-                      <div class="card">
+                        <p:column headerText="Etat">
+                            <h:outputText value="#{exemplaire.etat.nom}"/>
+                        </p:column>
 
-                              <p:column headerText="Exemplaires">
-                                  <h:outputText value="Exemplaires" />
-                              </p:column>
+                        <p:column headerText="Date retour">
+                            <h:outputText value="Retour prévu le 12/12/2023"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:tab>
+            </p:accordionPanel>
+        </div>
+<!--        <h3 style="margin-top:0">Où le trouver ? :</h3>-->
+<!--        <h:form>-->
 
-                      </div>
-                  <div class="card">
-                      <p:dataTable var="exemplaire" value="#{bean.articleSelected.exemplaires}" showGridlines="true">
-                          <p:column headerText="Site">
-                              <h:outputText value="#{exemplaire.mediatheque.nom}" />
-                          </p:column>
+<!--            <div class="card">-->
 
-                          <p:column headerText="Numéro d'exemplaire">
-                              <h:outputText value="#{exemplaire.numExemplaire}" />
-                          </p:column>
+<!--                <p:column headerText="Exemplaires">-->
+<!--                    <h:outputText value="Exemplaires"/>-->
+<!--                </p:column>-->
 
-                          <p:column headerText="Etat">
-                              <h:outputText value="#{exemplaire.etat.nom}" />
-                          </p:column>
+<!--            </div>-->
+<!--            <div class="card">-->
+<!--                <p:dataTable var="exemplaire" value="#{bean.articleSelected.exemplaires}" showGridlines="true">-->
+<!--                    <p:column headerText="Site">-->
+<!--                        <h:outputText value="#{exemplaire.mediatheque.nom}"/>-->
+<!--                    </p:column>-->
 
-                          <p:column headerText="Date retour">
-                              <h:outputText value="Retour prévu le 12/12/2023" />
-                          </p:column>
-                      </p:dataTable>
-                      <p:commandButton type="button" value="Réserver" styleClass="ui-button-success" style="margin-left: 650px"/>
-                  </div>
-              </h:form>
-          </ui:define>
+<!--                    <p:column headerText="Numéro d'exemplaire">-->
+<!--                        <h:outputText value="#{exemplaire.numExemplaire}"/>-->
+<!--                    </p:column>-->
+
+<!--                    <p:column headerText="Etat">-->
+<!--                        <h:outputText value="#{exemplaire.etat.nom}"/>-->
+<!--                    </p:column>-->
+
+<!--                    <p:column headerText="Date retour">-->
+<!--                        <h:outputText value="Retour prévu le 12/12/2023"/>-->
+<!--                    </p:column>-->
+<!--                </p:dataTable>-->
+<!--                <p:commandButton type="button" value="Réserver" styleClass="ui-button-success"-->
+<!--                                 style="margin-left: 650px"/>-->
+<!--            </div>-->
+<!--        </h:form>-->
+    </ui:define>
 </ui:composition>
 </html>

@@ -12,33 +12,38 @@
     <ui:define name="titre">Communauté urbaine de Issyonlit-Bocou - Résultat de recherche</ui:define>
     <f:view beforePhase="#{menuBean.addItemToMenuModel('Articles', '/resultatRecherche.xhtml', true)}"/>
     <ui:define name="contenu">
+        <h1 class="titreSection">RÉSULTAT</h1>
         <div class="product card">
-            <h:form id="form">
-                <p:dataView var="article" value="#{bean.filteredArticles}" rows="6" flex="true" layout="list" gridRowStyleClass="lg:col-6 xl:col-4"
-                            paginator="true" paginatorPosition="bottom"
-                            rowsPerPageTemplate="6,12,16"
-                            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-                    <p:dataViewListItem>
-                        <div class="product-list-item">
-                            <a href="./detailsArticle.xhtml?id=#{article.EAN13}">
-                                <img src="https://api.lorem.space/image/movie?w=150&amp;h=150" alt="pas d'image"/>
-                            </a>
-                            <div class="product-list-detail">
-                                <div class="article-format">#{article.format}</div>
-                                <div class="article-titre">#{article.titre}</div>
-                                <div class="article-editeur">#{article.editeur}</div>
-                                <div class="article-mediatheque">#{article.mediatheques.toString}</div>
-                            </div>
+            <p:dataView var="article" value="#{bean.filteredArticles}" rows="6" flex="true" layout="list"
+                        gridRowStyleClass="lg:col-6 xl:col-4"
+                        paginator="true" paginatorPosition="bottom"
+                        rowsPerPageTemplate="6,12,16"
+                        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+                <p:dataViewListItem>
+<!--                    <div class="product-list-item">-->
+<!--                        <a href="./detailsArticle.xhtml?id=#{article.EAN13}" class="product-list-item">-->
+<!--                            <img src="https://api.lorem.space/image/movie?w=150&amp;h=150" alt="pas d'image"/>-->
+<!--                            <span class="product-list-detail">-->
+<!--                            <span>#{article.titre}</span>-->
+<!--                            <span>#{article.editeur}</span>-->
+<!--                            <span>#{article.format}</span>-->
+<!--                        </span>-->
+<!--                        </a>-->
+<!--                    </div>-->
+                    <div class="product-list-item">
+                        <a href="./detailsArticle.xhtml?id=#{article.EAN13}">
+                            <img src="https://api.lorem.space/image/movie?w=150&amp;h=150" alt="pas d'image"/>
+                        </a>
+                        <div class="product-list-detail">
+                            <h3 style="margin-bottom: 2vh">#{article.titre}</h3>
+                            <div class="article-editeur">Editeur : #{article.editeur}</div>
+                            <div class="article-format">Format : #{article.format}</div>
                         </div>
+                    </div>
 
-                    </p:dataViewListItem>
-                </p:dataView>
-            </h:form>
+                </p:dataViewListItem>
+            </p:dataView>
         </div>
     </ui:define>
-
-   <ui:define name="pied">
-      FOOTER
-   </ui:define>
 </ui:composition>
 </html>
