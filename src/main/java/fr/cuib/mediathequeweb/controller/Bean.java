@@ -51,7 +51,8 @@ public class Bean implements Serializable {
 
     /* id = EAN13 issu de l'URL*/
     private String id;
-    private Integer rating = 4;
+
+
 
     @PostConstruct
     private void init()
@@ -90,13 +91,6 @@ public class Bean implements Serializable {
         }
     }
 
-    public Integer getRating() {
-        return rating;
-    }
-
-    public void setRating3(Integer rating) {
-        this.rating = rating;
-    }
 
     public Integer avisClient() {
         int min = 1;
@@ -107,6 +101,23 @@ public class Bean implements Serializable {
         int value = random.nextInt(max + min) + min;
 
         return value;
+    }
+
+    public String prenomClient() {
+        List<String> liste = new ArrayList<>();
+        liste.add("Christophe");liste.add("Christelle");liste.add("Yannick");liste.add("Nicholas");liste.add("Mohamed");
+        liste.add("Claire");liste.add("François");liste.add("Fabien");liste.add("Quentin");liste.add("Etienne");liste.add("Youssef");
+        liste.add("Brice");liste.add("Hélène");liste.add("Sonia");liste.add("Sophie");liste.add("Carmel");
+
+        int min = 0;
+        int max = 16;
+
+        Random random = new Random();
+
+        int value = random.nextInt(max + min) + min;
+
+
+        return liste.get(value);
     }
 
     public ArticleSearch getArticleSearch() {
