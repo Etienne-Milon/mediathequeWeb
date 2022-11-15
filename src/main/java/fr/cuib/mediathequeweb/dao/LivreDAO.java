@@ -53,7 +53,24 @@ public class LivreDAO extends DAO<Article, Object> {
 
     @Override
     public ArrayList getAll() {
-        return new ArrayList<>();
+
+        ResultSet rs;
+        ArrayList<Article> liste = new ArrayList<>();
+        String Statement = "SELECT * from LIVRE";
+        try (PreparedStatement pStmt = this.connexion.prepareStatement(Statement)) {
+            pStmt.execute();
+            rs = pStmt.getResultSet();
+            while (rs.next()) {
+                Article newArticle = new Article();
+                newArticle.setEAN13(rs.getLong(1));
+
+                liste.add(newArticle);
+            }
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return liste;
     }
 
     @Override

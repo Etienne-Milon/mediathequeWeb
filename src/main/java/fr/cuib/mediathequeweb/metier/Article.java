@@ -14,6 +14,7 @@ public class Article implements Serializable {
     private long EAN13;
     private String titre;
 
+
     private ArrayList<Piste> listePiste;
 
     private ArrayList<Exemplaire> exemplaires;

@@ -51,6 +51,7 @@ public class Bean implements Serializable {
 
     /* id = EAN13 issu de l'URL*/
     private String id;
+    private Integer rating = 4;
 
     @PostConstruct
     private void init()
@@ -87,6 +88,25 @@ public class Bean implements Serializable {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating3(Integer rating) {
+        this.rating = rating;
+    }
+
+    public Integer avisClient() {
+        int min = 1;
+        int max = 5;
+
+        Random random = new Random();
+
+        int value = random.nextInt(max + min) + min;
+
+        return value;
     }
 
     public ArticleSearch getArticleSearch() {
