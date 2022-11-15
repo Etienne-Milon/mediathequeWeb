@@ -9,7 +9,8 @@
 
 
 <ui:composition template="templates/layouts.xhtml">
-   <f:view beforePhase="#{menuBean.addItemToMenuModel('Articles', '/resultatRecherche.xhtml', true)}"/>
+    <ui:define name="titre">Communauté urbaine de Issyonlit-Bocou - Résultat de recherche</ui:define>
+    <f:view beforePhase="#{menuBean.addItemToMenuModel('Articles', '/resultatRecherche.xhtml', true)}"/>
     <ui:define name="contenu">
         <div class="product card">
             <h:form id="form">

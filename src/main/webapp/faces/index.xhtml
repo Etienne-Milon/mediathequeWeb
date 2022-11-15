@@ -9,42 +9,49 @@
       xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="templates/layouts.xhtml">
-      <ui:define name="contenu">
-          <div class="backgroundImage"></div>
-          <div>
-              <h1 style="margin-left: 10vw">TITRE</h1>
-          </div>
-          <div style="border: solid 2px black; padding-left: 10vw; padding-right: 10vw; display: grid; grid-template-columns: 38vw 38vw; justify-content: space-between">
-              <c:forEach begin="1" end="6">
-                  <div style="border: solid 2px blue; height: 30vh; margin-top: 1.5vw; margin-bottom: 1.5vw; display: flex; justify-content: flex-end; position: relative; overflow: hidden">
-                      <div style="width: 40%; background-image: url('https://www.andernoslesbains.fr/medias/2020/11/mediatheque-1-2-scaled.jpg'); background-size: cover"></div>
-                      <div style="background-color: blue; width: 60%; display: flex; align-items: center; flex-direction: column; padding: 0 2vw 0 2vw">
-                          <h1>Element</h1>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, dignissimos dolore doloremque eum eveniet hic laboriosam molestias possimus reprehenderit. Amet!</p>
-                      </div>
-                  </div>
-              </c:forEach>
-          </div>
-          <div>
-              <h1 style="margin-left: 10vw">TITRE</h1>
-          </div>
-          <div style="border: solid 2px black; padding: 5vw 10vw 0 10vw;">
-              <p:carousel  indicatorsContentStyleClass="indicatorNone" value="#{bean.recommandedArticles}" var="article" circular="true" autoplayInterval="3000"
-                          numVisible="3" numScroll="1">
-                  <div class="product-item">
-                      <div class="product-item-content" style="text-align: center; margin: 0.3vw">
-                          <div>
-                              <img src="https://via.placeholder.com/150x220" alt="picture"/>
-                              <h3 class="mb-1">#{article.titre}</h3>
-                              <h4 class="mt-0 mb-3">
-                                  <h:outputText value="#{article.format.nom}"/>
-                              </h4>
-                          </div>
-                      </div>
-                  </div>
-              </p:carousel>
-          </div>
-      </ui:define>
+    <ui:define name="titre">Communauté urbaine de Issyonlit-Bocou - Accueil</ui:define>
+    <ui:define name="contenu">
+        <div class="backgroundImage"></div>
+        <div>
+            <h1 class="titreSection">NEWS</h1>
+        </div>
+        <div class="divNews">
+            <c:forEach var="el" begin="1" end="4">
+                <div class="news">
+                    <div class="newsImage"></div>
+                    <div class="newsContent">
+                        <h1>Element #{el}</h1>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, dignissimos dolore doloremque
+                            eum eveniet hic laboriosam molestias possimus reprehenderit. Amet!
+                        </p>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+        <div>
+            <h1 class="titreSection">RECOMMANDATIONS</h1>
+        </div>
+        <div class="divCarousel">
+            <p:carousel indicatorsContentStyleClass="indicatorNone" value="#{bean.recommandedArticles}" var="article"
+                        circular="true" autoplayInterval="3000"
+                        numVisible="3" numScroll="1">
+                <div class="product-item">
+                    <div class="product-item-content" style="text-align: center; margin: 0.3vw">
+                        <a href="./detailsArticle.xhtml?id=#{article.EAN13}" style="text-decoration: none;">
+                            <img src="https://via.placeholder.com/150x220" alt="picture"/>
+                            <br/>
+                            <span class="mb-1">#{article.titre}</span>
+                            <br/>
+                            <span class="mt-0 mb-3">
+                                <h:outputText value="#{article.format.nom}"/>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </p:carousel>
+        </div>
+    </ui:define>
 </ui:composition>
 
 </html>

@@ -73,6 +73,9 @@ public class Bean implements Serializable {
     }
 
     public void goNext(){
+        if(articleSearch.getString().isEmpty()){
+            articleSearch.setString(null);
+        }
         this.articleSearch.setFormat(new Reference());
         this.articleSearch.setGenre(new Reference());
         this.articleSearch.setMediatheque(new Reference());
@@ -80,7 +83,7 @@ public class Bean implements Serializable {
         this.filteredArticles = DaoFactory.getArticleDAO().getLike(articleSearch);
 
         try{
-            FacesContext.getCurrentInstance().getExternalContext().redirect("./faces/resultatRecherche.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("resultatRecherche.xhtml");
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -5,19 +5,65 @@ html, body{
 .navbar{
     display: flex;
     flex-direction: column;
-    height: 20vh;
-    /*border: solid black 2px;*/
 }
 .navbar > :nth-child(1){
+    margin-top: 3vh;
+    margin-bottom: 3vh;
     display: flex;
     align-items: center;
     height: 70%;
-    /*border: solid green 2px;*/
 }
 
-/*.navbar > :nth-child(2){*/
-/*    border: solid red 2px;*/
-/*}*/
+.titreSection{
+    margin-top: 3vh;
+    margin-left: 10vw
+}
+
+.divNews{
+    padding-left: 10vw;
+    padding-right: 10vw;
+    display: grid;
+    grid-template-columns: 38vw 38vw;
+    justify-content: space-between
+}
+
+.news{
+    height: 30vh;
+    margin-top: 1.5vw;
+    margin-bottom: 1.5vw;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    overflow: hidden
+}
+
+.newsImage{
+    width: 40%;
+    background-image: url('https://www.andernoslesbains.fr/medias/2020/11/mediatheque-1-2-scaled.jpg');
+    background-size: cover
+}
+
+.newsContent{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.newsContent > h1{
+    background-color: #506d90;
+    text-align: center;
+    width: 100%;
+}
+
+.newsContent > p{
+    margin-left: 2vw;
+    margin-right: 2vw;
+}
+
+.divCarousel{
+    padding: 5vw 10vw 0 10vw;
+}
 
 .backgroundImage{
     display: flex;
@@ -28,9 +74,13 @@ html, body{
     background-size: cover;
 }
 
+a>span{
+    color: black;
+}
+
 #footer{
     height: 25vh;
-    background-color: grey;
+    background-color: #506d90;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,6 +89,23 @@ html, body{
 h1,h2,h3,h4,h5,h6{
     margin: 0;
 }
+.ui-breadcrumb{
+    background-color: #506d90 !important;
+    border-radius: 0 !important;
+}
+
+a.ui-icon-home{
+    color: white !important;
+}
+
+li:not(.ui-breadcrumb-chevron):before{
+    color: white !important;
+}
+
+.ui-menuitem-text{
+    color: white !important;
+}
+
 .ui-panelgrid.showcase-text-align-center .ui-grid-responsive .ui-panelgrid-cell {
     text-align: center;
 }
