@@ -20,7 +20,7 @@ public class MenuBean {
 
         DefaultMenuItem item = DefaultMenuItem.builder()
                 .value("Accueil")
-                .url("/CUIB/faces/index.xhtml")
+                .url("./index.xhtml")
                 .icon("pi pi-home")
                 .build();
 

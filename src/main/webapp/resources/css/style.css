@@ -5,6 +5,25 @@ html, body{
 .navbar{
     display: flex;
     flex-direction: column;
+    height: 20vh;
+    /*border: solid black 2px;*/
+}
+.product-list-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1%;
+}
+.product-list-detail{
+    padding: 2%;
+}
+
+.ui-dataview-header{
+    display: none;
+}
+.ui-dataview-row{
+    padding-left: 15%;
+
 }
 .navbar > :nth-child(1){
     margin-top: 3vh;

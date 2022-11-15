@@ -5,7 +5,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 
 <ui:composition template="templates/layouts.xhtml">
@@ -14,8 +14,8 @@
     <ui:define name="contenu">
         <div class="product card">
             <h:form id="form">
-                <p:dataView var="article" value="#{bean.filteredArticles}" rows="6"
-                            paginator="true"
+                <p:dataView var="article" value="#{bean.filteredArticles}" rows="6" flex="true" layout="list" gridRowStyleClass="lg:col-6 xl:col-4"
+                            paginator="true" paginatorPosition="bottom"
                             rowsPerPageTemplate="6,12,16"
                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
                     <p:dataViewListItem>
@@ -27,8 +27,7 @@
                                 <div class="article-format">#{article.format}</div>
                                 <div class="article-titre">#{article.titre}</div>
                                 <div class="article-editeur">#{article.editeur}</div>
-                                <div class="article-mediatheque">#{article.mediatheques.toString}
-                                </div>
+                                <div class="article-mediatheque">#{article.mediatheques.toString}</div>
                             </div>
                         </div>
 
