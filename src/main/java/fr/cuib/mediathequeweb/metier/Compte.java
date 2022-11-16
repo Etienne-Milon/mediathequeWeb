@@ -7,6 +7,7 @@ public class Compte {
     private String adresse;
     private String email;
     private String password;
+    private String codePostal;
 
     public Compte() {
     }
@@ -29,6 +30,14 @@ public class Compte {
 
     public String getPrenom() {
         return prenom;
+    }
+
+    public String getCodePostal() {
+        return codePostal;
+    }
+
+    public void setCodPostal(String codePostal) {
+        this.codePostal = codePostal;
     }
 
     public void setPrenom(String prenom) {

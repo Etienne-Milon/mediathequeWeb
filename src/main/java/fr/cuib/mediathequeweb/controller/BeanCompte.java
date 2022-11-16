@@ -1,6 +1,8 @@
 package fr.cuib.mediathequeweb.controller;
 
+import fr.cuib.mediathequeweb.metier.Compte;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
@@ -8,12 +10,23 @@ import org.primefaces.PrimeFaces;
 
 import java.io.Serializable;
 
-@Named
-@RequestScoped
+@Named("beanCompte")
+@SessionScoped
 public class BeanCompte implements Serializable {
 
     private String login;
     private String password;
+    private Compte compte;
+
+
+
+    public Compte getCompte() {
+        return compte;
+    }
+
+    public void setCompte(Compte compte) {
+        this.compte = compte;
+    }
 
     public String getLogin() {
         return login;

@@ -13,7 +13,7 @@
     <ui:define name="contenu">
         <h1 class="titreSection">RÉSULTAT</h1>
         <div class="product card">
-            <p:dataView var="article" value="#{bean.filteredArticles}" rows="6" flex="true" layout="list"
+            <p:dataView var="article" value="#{beanArticle.filteredArticles}" rows="6" flex="true" layout="list"
                         gridRowStyleClass="lg:col-6 xl:col-4"
                         paginator="true" paginatorPosition="bottom"
                         rowsPerPageTemplate="6,12,16"

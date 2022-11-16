@@ -11,9 +11,9 @@ import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.*;
 
-@Named("bean")
+@Named("beanArticle")
 @SessionScoped
-public class Bean implements Serializable {
+public class BeanArticle implements Serializable {
 
     private Article articleSelected;
     private List<Article> filteredArticles;
@@ -28,6 +28,8 @@ public class Bean implements Serializable {
     private Personne personne;
     private Piste piste;
     private Serie serie;
+    private Compte compte;
+    private Utilisateur utilisateur;
     private List<Article> allArticles;
     private List<Editeur> allEditeurs;
     private List<Reference> allEtats;
@@ -55,7 +57,8 @@ public class Bean implements Serializable {
     private void init()
     {
         this.articleSearch = new ArticleSearch();
-
+        compte = new Compte();
+        utilisateur = new Utilisateur();
         allArticles = DaoFactory.getArticleDAO().getAll();
         allEditeurs = DaoFactory.getEditeurDAO().getAll();
         allEtats = DaoFactory.getEtatDAO().getAll();
@@ -115,6 +118,22 @@ public class Bean implements Serializable {
 
 
         return liste.get(value);
+    }
+
+    public Compte getCompte() {
+        return compte;
+    }
+
+    public void setCompte(Compte compte) {
+        this.compte = compte;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
     public ArticleSearch getArticleSearch() {

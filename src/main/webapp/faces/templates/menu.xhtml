@@ -17,10 +17,10 @@
                 <div class="col-12 md:col-4" style="margin-left: 10vw">
                     <h:form>
                         <div class="ui-inputgroup ui-float-label">
-                            <p:inputText id="float-input" value="#{bean.articleSearch.string}" style="width: 100%"/>
+                            <p:inputText id="float-input" value="#{beanArticle.articleSearch.string}" style="width: 100%"/>
                             <p:outputLabel for="@previous" value="Recherche"/>
                             <p:commandButton icon="pi pi-search" styleClass="ui-button-secondary ui-button-flat"
-                                             action="#{bean.goNext()}"
+                                             action="#{beanArticle.goNext()}"
                                              style="border-top: solid 1px #ced4da; border-right: solid 1px #ced4da;border-bottom: solid 1px #ced4da"/>
                         </div>
                     </h:form>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+
+<ui:composition template="templates/layouts.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+    <f:view beforePhase="#{menuBean.addItemToMenuModel('Détails', './detailsArticle.xhtml', true)}"/>
+    <ui:define name="titre">Communauté urbaine de Issyonlit-Bocou - Détails de l'article</ui:define>
+
+
+    <ui:define name="contenu">
+
+            <div style="margin: 3vh 10vh">
+                <h2>Formulaire d'inscription :</h2><br/>
+
+                <h:form>
+                            <div style="margin-bottom: 1vh">
+                            <p:outputLabel value="Nom :" for="nom" style="margin-right: 25vh"/>
+
+                            <p:inputText id="nom" value="#{beanCompte.compte.nom}" required="true" requiredMessage=" Le nom est obligatoire"
+                                         validatorMessage="Le nom doit avoir une longueur comprise entre 3 et 20 caractères ">
+                                <f:validateLength minimum="3" maximum="50"/>
+                            </p:inputText>
+                            <h:message for="nom"/>
+                            </div>
+
+                            <div style="margin-bottom: 1vh">
+                            <p:outputLabel value="Prénom :" for="prenom" style="margin-right: 22.5vh"/>
+
+                            <p:inputText id="prenom" value="#{bean.compte.prenom}" required="true" requiredMessage=" Le prénom est obligatoire"/>
+                            <p:message for="prenom"/>
+                            </div>
+
+                            <div style="margin-bottom: 1vh">
+                            <p:outputLabel value="Pseudonyme :" for="pseudonyme" style="margin-right: 17.8vh"/>
+                            <p:inputText id="pseudonyme" value="#{bean.utilisateur.nom}" required="true" requiredMessage=" La taille est obligatoire"
+                                         converterMessage="La taille doit être un nombre"/>
+                            <p:message for="pseudonyme"/>
+                            </div>
+
+                            <div style="margin-bottom: 1vh">
+                            <p:outputLabel value="Adresse :" for="adresse" style="margin-right: 22.5vh"/>
+                            <p:inputText id="adresse" value="#{bean.compte.adresse}" required="true" requiredMessage=" Le poids est obligatoire"
+                                         converterMessage="Le poids doit être un nombre"/>
+                            <p:message for="adresse"/>
+                            </div>
+
+                            <div style="margin-bottom: 1vh">
+                            <p:outputLabel value="Code postal :" for="codePostal" style="margin-right: 18.5vh"/>
+                            <p:inputText id="codePostal" value="#{bean.compte.codePostal}" required="true" requiredMessage=" Le poids est obligatoire"
+                                         converterMessage="Le poids doit être un nombre"/>
+                            <p:message for="codePostal"/>
+                            </div>
+
+                            <div style="margin-bottom: 1vh">
+                            <p:outputLabel value="Email :" for="email" style="margin-right: 24.7vh"/>
+                            <p:inputText id="email" value="#{bean.compte.adresse}" required="true" requiredMessage=" Le poids est obligatoire"
+                                         converterMessage="Le poids doit être un nombre"/>
+                            <p:message for="email"/>
+                            </div>
+
+                            <div style="margin-bottom: 1vh">
+                            <p:outputLabel for="pwd1" styleClass="col-fixed" style="margin-right: 18vh" value="Mot de passe" />
+                            <p:password id="pwd1" value="#{bean.compte.password}" match="pwd2" label="Password 1" required="true"/><br/>
+                            </div>
+
+                            <div style="margin-bottom: 1vh">
+                            <p:outputLabel for="pwd2" styleClass="col-fixed" style="margin-right: 8vh" value="Confirmer mot de passe"/>
+                            <p:password id="pwd2" value="#{bean.compte.password}" label="Password 2" required="true"/><br/>
+                            </div>
+
+                <p:growl id="msg"/>
+                <p:selectBooleanCheckbox/>
+                En vous inscrivant, vous acceptez les<a href="index.xhtml">Conditions d'utilisation </a>
+                et la<a href="index.xhtml"> Politique de confidentialité</a>, notamment l'
+                <a href="index.xhtml">Utilisation des cookies.</a><br/>
+
+                <p:commandButton value="Envoyer" update="@form" styleClass="ui-button-raised ui-button-success"
+                          style="width: 8vw; margin-top: 4vh"/>
+                <p:messages id="messages" showDetail="true">
+                    <p:autoUpdate/>
+                </p:messages>
+                </h:form>
+            </div>
+
+
+    </ui:define>
+</ui:composition>
+</html>
