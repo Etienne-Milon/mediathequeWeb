@@ -36,46 +36,46 @@
                             <div style="margin-bottom: 1vh">
                             <p:outputLabel value="Prénom :" for="prenom" style="margin-right: 22.5vh"/>
 
-                            <p:inputText id="prenom" value="#{bean.compte.prenom}" required="true" requiredMessage=" Le prénom est obligatoire"/>
+                            <p:inputText id="prenom" value="#{beanCompte.compte.prenom}" required="true" requiredMessage=" Le prénom est obligatoire"/>
                             <p:message for="prenom"/>
                             </div>
 
                             <div style="margin-bottom: 1vh">
                             <p:outputLabel value="Pseudonyme :" for="pseudonyme" style="margin-right: 17.8vh"/>
-                            <p:inputText id="pseudonyme" value="#{bean.utilisateur.nom}" required="true" requiredMessage=" La taille est obligatoire"
+                            <p:inputText id="pseudonyme" value="#{beanCompte.compte.utilisateur.nom}" required="true" requiredMessage=" La taille est obligatoire"
                                          converterMessage="La taille doit être un nombre"/>
                             <p:message for="pseudonyme"/>
                             </div>
 
                             <div style="margin-bottom: 1vh">
                             <p:outputLabel value="Adresse :" for="adresse" style="margin-right: 22.5vh"/>
-                            <p:inputText id="adresse" value="#{bean.compte.adresse}" required="true" requiredMessage=" Le poids est obligatoire"
+                            <p:inputText id="adresse" value="#{beanCompte.compte.adresse}" required="true" requiredMessage=" Le poids est obligatoire"
                                          converterMessage="Le poids doit être un nombre"/>
                             <p:message for="adresse"/>
                             </div>
 
                             <div style="margin-bottom: 1vh">
                             <p:outputLabel value="Code postal :" for="codePostal" style="margin-right: 18.5vh"/>
-                            <p:inputText id="codePostal" value="#{bean.compte.codePostal}" required="true" requiredMessage=" Le poids est obligatoire"
+                            <p:inputText id="codePostal" value="#{beanCompte.compte.codePostal}" required="true" requiredMessage=" Le poids est obligatoire"
                                          converterMessage="Le poids doit être un nombre"/>
                             <p:message for="codePostal"/>
                             </div>
 
                             <div style="margin-bottom: 1vh">
                             <p:outputLabel value="Email :" for="email" style="margin-right: 24.7vh"/>
-                            <p:inputText id="email" value="#{bean.compte.adresse}" required="true" requiredMessage=" Le poids est obligatoire"
+                            <p:inputText id="email" value="#{beanCompte.compte.adresse}" required="true" requiredMessage=" Le poids est obligatoire"
                                          converterMessage="Le poids doit être un nombre"/>
                             <p:message for="email"/>
                             </div>
 
                             <div style="margin-bottom: 1vh">
                             <p:outputLabel for="pwd1" styleClass="col-fixed" style="margin-right: 18vh" value="Mot de passe" />
-                            <p:password id="pwd1" value="#{bean.compte.password}" match="pwd2" label="Password 1" required="true"/><br/>
+                            <p:password id="pwd1" value="#{beanCompte.compte.password}" match="pwd2" label="Password 1" required="true"/><br/>
                             </div>
 
                             <div style="margin-bottom: 1vh">
                             <p:outputLabel for="pwd2" styleClass="col-fixed" style="margin-right: 8vh" value="Confirmer mot de passe"/>
-                            <p:password id="pwd2" value="#{bean.compte.password}" label="Password 2" required="true"/><br/>
+                            <p:password id="pwd2" value="#{beanCompte.compte.password}" label="Password 2" required="true"/><br/>
                             </div>
 
                 <p:growl id="msg"/>

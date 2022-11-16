@@ -14,12 +14,55 @@ public class CompteDAO extends DAO<Compte, Compte>{
         super(connexion);
     }
 
-    public Compte getById(int id) {
+    public Boolean getById(int id) {
         String query = "SELECT * FROM COMPTE WHERE NUM_ADHERENT = ?";
         Compte compte = new Compte();
         ResultSet rs;
         try(PreparedStatement stmt = connexion.prepareStatement(query)){
             stmt.setLong(1, id);
+            stmt.execute();
+            rs = stmt.getResultSet();
+            while (rs.next()){
+                compte.setNumAdherent(rs.getInt(1));
+                compte.setNom(rs.getString(2));
+                compte.setPrenom(rs.getString(3));
+                compte.setAdresse(rs.getString(4));
+                compte.setEmail(rs.getString(5));
+                compte.setPassword(rs.getString(6));
+            }
+            rs.close();
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public Boolean checkAccountExistence(int id) {
+        String query = "SELECT * FROM COMPTE WHERE NUM_ADHERENT = ?";
+        Compte compte = new Compte();
+        ResultSet rs;
+        try(PreparedStatement stmt = connexion.prepareStatement(query)){
+            stmt.setLong(1, id);
+            stmt.execute();
+            rs = stmt.getResultSet();
+            if (rs.next()){
+                rs.close();
+                return true;
+            }
+            return false;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public Compte getByIdOrMail(String string){
+        String query = "SELECT * FROM COMPTE WHERE NUM_ADHERENT = ? or email = ?";
+        Compte compte = new Compte();
+        ResultSet rs;
+        try(PreparedStatement stmt = connexion.prepareStatement(query)){
+            stmt.setString(1, string);
             stmt.execute();
             rs = stmt.getResultSet();
             while (rs.next()){
@@ -37,8 +80,30 @@ public class CompteDAO extends DAO<Compte, Compte>{
         return compte;
     }
 
-    public static boolean validatePwd(String compte, long hash){
-        return false;
+
+    public boolean validatePwd(String num_adherent, String hash){
+        String query = "SELECT * FROM COMPTE WHERE NUM_ADHERENT = ? AND passwordhash = ?";
+        Compte compte = new Compte();
+        ResultSet rs;
+        try(PreparedStatement stmt = connexion.prepareStatement(query)){
+            stmt.setString(1, num_adherent);
+            stmt.setString(2, hash);
+            stmt.execute();
+            rs = stmt.getResultSet();
+            while (rs.next()){
+                compte.setNumAdherent(rs.getInt(1));
+                compte.setNom(rs.getString(2));
+                compte.setPrenom(rs.getString(3));
+                compte.setAdresse(rs.getString(4));
+                compte.setEmail(rs.getString(5));
+                compte.setPassword(rs.getString(6));
+            }
+            rs.close();
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
 

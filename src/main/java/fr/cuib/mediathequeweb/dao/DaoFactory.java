@@ -56,4 +56,6 @@ public class DaoFactory {
     public static PersonneDAO getPersonneDAO() {
         return new PersonneDAO(connexion);
     }
+
+    public static CompteDAO getCompteDAO(){return new CompteDAO(connexion);}
 }

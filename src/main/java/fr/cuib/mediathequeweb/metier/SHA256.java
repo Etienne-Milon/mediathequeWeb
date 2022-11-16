@@ -6,7 +6,13 @@ import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 
 public class SHA256 {
-    String passwordToHash = "password";
+
+    public String hash;
+
+    public SHA256(String passwordToHash) throws NoSuchAlgorithmException, NoSuchProviderException {
+        //salt = getSalt();
+        this.hash = get_SHA_256_SecurePassword(passwordToHash);
+    }
     static String salt;
 
     static {
@@ -19,8 +25,6 @@ public class SHA256 {
         }
     }
 
-    String securePassword = get_SHA_256_SecurePassword(passwordToHash, salt);
-
     private static String getSalt()
         throws NoSuchAlgorithmException, NoSuchProviderException
     {
@@ -30,11 +34,11 @@ public class SHA256 {
         return salt.toString();
     }
 
-    private static String get_SHA_256_SecurePassword(String passwordToHash, String salt){
+    private static String get_SHA_256_SecurePassword(String passwordToHash){
         String generatedPassword = null;
         try{
             MessageDigest md = MessageDigest.getInstance("SHA-256");
-            md.update(salt.getBytes());
+            //md.update(salt.getBytes());
             byte[] bytes = md.digest(passwordToHash.getBytes());
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i< bytes.length; i++){

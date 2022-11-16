@@ -4,6 +4,7 @@ import fr.cuib.mediathequeweb.dao.DaoFactory;
 import fr.cuib.mediathequeweb.metier.*;
 import fr.cuib.mediathequeweb.service.ArticleSearch;
 import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
@@ -28,8 +29,6 @@ public class BeanArticle implements Serializable {
     private Personne personne;
     private Piste piste;
     private Serie serie;
-    private Compte compte;
-    private Utilisateur utilisateur;
     private List<Article> allArticles;
     private List<Editeur> allEditeurs;
     private List<Reference> allEtats;
@@ -57,8 +56,6 @@ public class BeanArticle implements Serializable {
     private void init()
     {
         this.articleSearch = new ArticleSearch();
-        compte = new Compte();
-        utilisateur = new Utilisateur();
         allArticles = DaoFactory.getArticleDAO().getAll();
         allEditeurs = DaoFactory.getEditeurDAO().getAll();
         allEtats = DaoFactory.getEtatDAO().getAll();
@@ -124,21 +121,6 @@ public class BeanArticle implements Serializable {
         return liste.get(value);
     }
 
-    public Compte getCompte() {
-        return compte;
-    }
-
-    public void setCompte(Compte compte) {
-        this.compte = compte;
-    }
-
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
-    }
-
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
-    }
 
     public ArticleSearch getArticleSearch() {
         return articleSearch;
