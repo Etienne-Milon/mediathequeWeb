@@ -55,8 +55,6 @@ j
 :src/main/java/fr/cuib/mediathequeweb/metier/Reference.java,7\b\7b3439830f7574a588fca8b0e131ecdc153d87a0
 f
 6src/main/java/fr/cuib/mediathequeweb/metier/Serie.java,1\6\16be7bf5976ec92975fb9f4957904f07c93d2389
-h
-8src/main/java/fr/cuib/mediathequeweb/dao/DaoFactory.java,4\b\4b4b0c74abae311fc18d83af0c2f3ff8d680d480
 _
 /.idea/artifacts/mediathequeWeb_war_exploded.xml,5\6\56b873a1758213b05f67f887446c63b37411a262
 ]
@@ -75,7 +73,15 @@ l
 <src/main/java/fr/cuib/mediathequeweb/dao/MediathequeDAO.java,3\2\3299e2b06cae4793d3cbb1915b237247b8aa808b
 h
 8src/main/java/fr/cuib/mediathequeweb/dao/EditeurDAO.java,4\4\44940744cb9cdc1193bd7f281193bd3ff2eed00b
-h
-8src/main/java/fr/cuib/mediathequeweb/dao/ArticleDAO.java,7\4\7420e1a79b0256036ef08d8da7f02979af23ee41
 k
 ;src/main/java/fr/cuib/mediathequeweb/metier/Exemplaire.java,2\6\26f551fe88da7d7fd029f16a80a198aa076e2f8e
+h
+8src/main/java/fr/cuib/mediathequeweb/metier/Article.java,7\b\7bf538ee8214b83883e8fba991e24da4233d3440
+g
+7src/main/java/fr/cuib/mediathequeweb/dao/FormatDAO.java,9\0\9003123278aaded4fd0b1c44607ca7db377516dd
+k
+;src/main/java/fr/cuib/mediathequeweb/dao/ExemplaireDAO.java,4\e\4e6c4a8b54154b60e1751c4f4b2a013354beee7c
+Q
+!src/main/webapp/WEB-INF/beans.xml,8\3\83008b1a88ba03a2548bb5b9ad0768c6c307d36c
+X
+(src/main/webapp/WEB-INF/faces-config.xml,9\2\921ab541b29cd2aba50bbba38a0af79890ebe16a

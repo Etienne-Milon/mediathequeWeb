@@ -15,7 +15,11 @@ public class CompteDAO extends DAO<Compte, Compte>{
     }
 
     @Override
-    public Compte getById(long id) {
+    public Compte getById(long ean13) {
+        return null;
+    }
+
+    public Compte getById(int id) {
         String query = "SELECT * FROM COMPTE WHERE NUM_ADHERENT = ?";
         Compte compte = new Compte();
         ResultSet rs;
@@ -37,6 +41,12 @@ public class CompteDAO extends DAO<Compte, Compte>{
         }
         return compte;
     }
+
+    public static boolean validatePwd(String compte, long hash){
+
+        return false;
+    }
+
 
     @Override
     public ArrayList<Compte> getAll() {
