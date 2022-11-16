@@ -84,8 +84,12 @@ public class BeanArticle implements Serializable {
 
         this.filteredArticles = DaoFactory.getArticleDAO().getLike(articleSearch);
 
+        redirect("resultatRecherche.xhtml");
+    }
+
+    public void redirect(String url){
         try{
-            FacesContext.getCurrentInstance().getExternalContext().redirect("resultatRecherche.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(url);
         }catch (Exception e){
             e.printStackTrace();
         }

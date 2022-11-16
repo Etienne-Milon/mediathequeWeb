@@ -78,7 +78,7 @@ html, body{
 }
 
 .divCarousel{
-    padding: 5vw 10vw 0 10vw;
+    padding: 0 10vw 0 10vw;
 }
 
 .backgroundImage{
@@ -132,6 +132,7 @@ li:not(.ui-breadcrumb-chevron):before{
 
 .ui-carousel-container{
     height: 50vh;
+    align-items: center;
 }
 
 .ui-carousel-indicators{
@@ -140,19 +141,8 @@ li:not(.ui-breadcrumb-chevron):before{
     visibility: hidden !important;
 }
 
-.ui-carousel-item-active{
-    transform: scale(1.1);
-    transition-duration: 0.5s;
-}
-
-.ui-carousel-item-start{
-    transform: scale(1) !important;
-    filter: blur(1px);
-}
-
-.ui-carousel-item-end{
-    transform: scale(1) !important;
-    filter: blur(1px);
+.ui-inplace-display{
+    padding: 0;
 }
 
 .avis{
