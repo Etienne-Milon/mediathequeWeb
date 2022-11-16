@@ -10,10 +10,10 @@
 <ui:composition>
     <div class="navbar">
         <div>
-            <div style="width: 20vw; display: flex; justify-content: center; align-items: center">
+            <div style="display: flex; justify-content: center; align-items: center">
                 <img src="../resources/img/Cuib.png" alt="icon" style="width: 35vh"/>
             </div>
-            <div style="width: 40vw">
+            <div style="width: 35vw">
                 <div class="col-12 md:col-4" style="margin-left: 10vw">
                     <h:form>
                         <div class="ui-inputgroup ui-float-label">
@@ -26,7 +26,10 @@
                     </h:form>
                 </div>
             </div>
-            <div></div>
+            <div style="display: flex; justify-content: flex-end; flex-grow: 100">
+                <p:commandButton type="button" value="S'inscrire" styleClass="ui-button-secondary" style="background-color: #506d90 !important;"/>
+                <p:commandButton value="Se connecter" icon="pi pi-user" iconPos="left" styleClass="ui-button-flat"/>
+            </div>
         </div>
         <div class="card">
             <h:form>
