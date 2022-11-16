@@ -3,13 +3,10 @@ package fr.cuib.mediathequeweb.controller;
 import fr.cuib.mediathequeweb.dao.DaoFactory;
 import fr.cuib.mediathequeweb.metier.*;
 import fr.cuib.mediathequeweb.service.ArticleSearch;
-import fr.cuib.mediathequeweb.service.ArticleSearch;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.context.FacesContext;
-import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
-import org.primefaces.model.menu.MenuModel;
 
 import java.io.Serializable;
 import java.util.*;
