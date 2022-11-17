@@ -10,7 +10,9 @@ import java.io.Serializable;
 public class BeanUtilisateur implements Serializable {
     private Utilisateur utilisateur;
 
-
+    public BeanUtilisateur() {
+        utilisateur =new Utilisateur();
+    }
 
     public Utilisateur getUtilisateur() {
         return utilisateur;

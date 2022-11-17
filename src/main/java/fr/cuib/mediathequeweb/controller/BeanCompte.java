@@ -22,7 +22,9 @@ public class BeanCompte implements Serializable {
     private String login;
     private String password;
     private Compte compte;
-
+    public BeanCompte() {
+        compte = new Compte();
+    }
 
     public Compte getCompte() {
         return compte;

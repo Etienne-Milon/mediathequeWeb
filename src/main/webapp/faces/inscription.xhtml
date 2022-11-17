@@ -27,68 +27,84 @@
                             <p:outputLabel value="Nom :" for="nom" style="margin-right: 25vh"/>
 
                             <p:inputText id="nom" value="#{beanCompte.compte.nom}" required="true" requiredMessage=" Le nom est obligatoire"
-                                         validatorMessage="Le nom doit avoir une longueur comprise entre 3 et 20 caractères ">
-                                <f:validateLength minimum="3" maximum="50"/>
+                                         validatorMessage="Le prénom doit avoir une longueur comprise entre 1 et 50 caractères et ne comporter que des caractères!">
+                              <f:validateRegex pattern="^[a-zA-z]{3,50}$"/>
                             </p:inputText>
-                            <h:message for="nom"/>
+                            <p:message  for="nom"/>
                             </div>
 
                             <div style="margin-bottom: 1vh">
                             <p:outputLabel value="Prénom :" for="prenom" style="margin-right: 22.5vh"/>
 
-                            <p:inputText id="prenom" value="#{beanCompte.compte.prenom}" required="true" requiredMessage=" Le prénom est obligatoire"/>
+                            <p:inputText id="prenom" value="#{beanCompte.compte.prenom}" required="true" requiredMessage=" Le prénom est obligatoire"
+                                         validatorMessage="Le prénom doit avoir une longueur comprise entre 1 et 50 caractères et ne comporter que des caractères!">
+                                <f:validateRegex pattern="^[a-zA-z]{3,50}$"/>
+                                </p:inputText>
                             <p:message for="prenom"/>
                             </div>
 
                             <div style="margin-bottom: 1vh">
-                            <p:outputLabel value="Pseudonyme :" for="pseudonyme" style="margin-right: 17.8vh"/>
-                            <p:inputText id="pseudonyme" value="#{beanCompte.compte.utilisateur.nom}" required="true" requiredMessage=" La taille est obligatoire"
-                                         converterMessage="La taille doit être un nombre"/>
+                            <p:outputLabel value="Pseudonyme :" for="pseudonyme" style="margin-right: 19.5vh"/>
+                            <p:inputText id="pseudonyme" value="#{beanUtilisateur.utilisateur.nom}" required="false" />
                             <p:message for="pseudonyme"/>
                             </div>
 
                             <div style="margin-bottom: 1vh">
                             <p:outputLabel value="Adresse :" for="adresse" style="margin-right: 22.5vh"/>
-                            <p:inputText id="adresse" value="#{beanCompte.compte.adresse}" required="true" requiredMessage=" Le poids est obligatoire"
-                                         converterMessage="Le poids doit être un nombre"/>
+                            <p:inputText id="adresse" value="#{beanCompte.compte.adresse}" required="true" requiredMessage=" L'adresse est obligatoire"
+                                         validatorMessage="Le format de l'adresse n'est pas valide">
+                                <f:validateRegex pattern="^([1-9][0-9](?:-[1-9][0-9]))[\s,-]+(?:(bis|ter|qua)[\s,-]+)?([\w]+[-\w])[\s,]+([-\w].+)$" />
+                            </p:inputText>
                             <p:message for="adresse"/>
                             </div>
 
                             <div style="margin-bottom: 1vh">
                             <p:outputLabel value="Code postal :" for="codePostal" style="margin-right: 18.5vh"/>
-                            <p:inputText id="codePostal" value="#{beanCompte.compte.codePostal}" required="true" requiredMessage=" Le poids est obligatoire"
-                                         converterMessage="Le poids doit être un nombre"/>
-                            <p:message for="codePostal"/>
+                            <p:inputText id="codePostal" value="#{beanCompte.compte.codePostal}" required="true" requiredMessage=" Le code postal est obligatoire"
+                                         validatorMessage="Le code postal doit comporter 5 chiffres" >
+                                <f:validateRegex pattern="^((0[1-9])|([1-8][0-9])|(9[0-5]))[0-9]{3}$"/>
+                            </p:inputText>
+                                <p:message for="codePostal"/>
                             </div>
 
                             <div style="margin-bottom: 1vh">
-                            <p:outputLabel value="Email :" for="email" style="margin-right: 24.7vh"/>
-                            <p:inputText id="email" value="#{beanCompte.compte.adresse}" required="true" requiredMessage=" Le poids est obligatoire"
-                                         converterMessage="Le poids doit être un nombre"/>
+                            <p:outputLabel value="Email :" for="email" style="margin-right: 24vh"/>
+                            <p:inputText id="email" value="#{beanCompte.compte.adresse}" required="true" requiredMessage=" L'adresse mail est obligatoire"
+                                         validatorMessage="L'adresse mail est invalide">
+                                 <f:validateRegex pattern="^[a-zA-Z0-9.!#$%&amp;’*+=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" />
+                            </p:inputText>
                             <p:message for="email"/>
                             </div>
 
                             <div style="margin-bottom: 1vh">
                             <p:outputLabel for="pwd1" styleClass="col-fixed" style="margin-right: 18vh" value="Mot de passe" />
-                            <p:password id="pwd1" value="#{beanCompte.compte.password}" match="pwd2" label="Password 1" required="true"/><br/>
+                            <p:password id="pwd1" value="#{beanCompte.password}" match="pwd2" label="Password 1" required="true" requiredMessage="Le mot de passe est obligatoire"
+                                          validatorMessage="Votre mot de passe n'est pas valide!">
+                                <f:validateRegex pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,50})$"/>
+                            </p:password>
+                                <p:message for="pwd1"/>
+
+                                <br/>
                             </div>
 
                             <div style="margin-bottom: 1vh">
                             <p:outputLabel for="pwd2" styleClass="col-fixed" style="margin-right: 8vh" value="Confirmer mot de passe"/>
-                            <p:password id="pwd2" value="#{beanCompte.compte.password}" label="Password 2" required="true"/><br/>
+                            <p:password id="pwd2" value="#{beanCompte.password}" label="Password 2" required="true" requiredMessage="La confirmation du mot de passe est obligatoire"
+                                           validatorMessage="Votre mot de passe n'est pas valide!">
+                                <f:validateRegex pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,50})$"/>
+                            </p:password>
+                                <p:message for="pwd2"/>
+                                <br/><br/>
                             </div>
 
-                <p:growl id="msg"/>
-                <p:selectBooleanCheckbox/>
+
+                <p:selectBooleanCheckbox required="true" requiredMessage="Vous devez accepter les conditions d'utilisation"/>
                 En vous inscrivant, vous acceptez les<a href="index.xhtml">Conditions d'utilisation </a>
                 et la<a href="index.xhtml"> Politique de confidentialité</a>, notamment l'
                 <a href="index.xhtml">Utilisation des cookies.</a><br/>
 
                 <p:commandButton value="Envoyer" update="@form" styleClass="ui-button-raised ui-button-success"
                           style="width: 8vw; margin-top: 4vh"/>
-                <p:messages id="messages" showDetail="true">
-                    <p:autoUpdate/>
-                </p:messages>
                 </h:form>
             </div>
 

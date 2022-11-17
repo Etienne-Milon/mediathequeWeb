@@ -1,6 +1,9 @@
 package fr.cuib.mediathequeweb.metier;
+;
 
-public class Compte {
+import java.io.Serializable;
+
+public class Compte implements Serializable{
     private int numAdherent;
     private String nom;
     private String prenom;
@@ -36,7 +39,7 @@ public class Compte {
         return codePostal;
     }
 
-    public void setCodPostal(String codePostal) {
+    public void setCodePostal(String codePostal) {
         this.codePostal = codePostal;
     }
 
