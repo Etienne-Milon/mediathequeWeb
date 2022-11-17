@@ -53,7 +53,7 @@
                             <p:outputLabel value="Adresse :" for="adresse" style="margin-right: 22.5vh"/>
                             <p:inputText id="adresse" value="#{beanCompte.compte.adresse}" required="true" requiredMessage=" L'adresse est obligatoire"
                                          validatorMessage="Le format de l'adresse n'est pas valide">
-                                <f:validateRegex pattern="^([1-9][0-9](?:-[1-9][0-9]))[\s,-]+(?:(bis|ter|qua)[\s,-]+)?([\w]+[-\w])[\s,]+([-\w].+)$" />
+                                <f:validateRegex pattern="^([1-9][0-9]*(?:-[1-9][0-9]*)*)[\s,-]+(?:(bis|ter|qua)[\s,-]+)?([\w]+[\-\w]*)[\s,]+([-\w].+)$" />
                             </p:inputText>
                             <p:message for="adresse"/>
                             </div>
@@ -69,7 +69,7 @@
 
                             <div style="margin-bottom: 1vh">
                             <p:outputLabel value="Email :" for="email" style="margin-right: 24vh"/>
-                            <p:inputText id="email" value="#{beanCompte.compte.adresse}" required="true" requiredMessage=" L'adresse mail est obligatoire"
+                            <p:inputText id="email" value="#{beanCompte.compte.email}" required="true" requiredMessage=" L'adresse mail est obligatoire"
                                          validatorMessage="L'adresse mail est invalide">
                                  <f:validateRegex pattern="^[a-zA-Z0-9.!#$%&amp;’*+=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" />
                             </p:inputText>
@@ -104,7 +104,7 @@
                 <a href="index.xhtml">Utilisation des cookies.</a><br/>
 
                 <p:commandButton value="Envoyer" update="@form" styleClass="ui-button-raised ui-button-success"
-                          style="width: 8vw; margin-top: 4vh"/>
+                          style="width: 8vw; margin-top: 4vh" action="#{beanCompte.doRegister()}" ajax="false"/>
                 </h:form>
             </div>
 

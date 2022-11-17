@@ -14,6 +14,7 @@ import org.primefaces.PrimeFaces;
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
+import java.sql.SQLException;
 
 @Named("beanCompte")
 @SessionScoped
@@ -50,19 +51,17 @@ public class BeanCompte implements Serializable {
         this.password = password;
     }
 
-    public void doLogin() throws NoSuchAlgorithmException, NoSuchProviderException {
+    public boolean doLogin() throws NoSuchAlgorithmException, NoSuchProviderException {
         FacesMessage message = null;
         boolean loggedIn = false;
         if (login != null && DaoFactory.getCompteDAO().checkAccountExistence(Integer.parseInt(login))){
             if (password != null) {
-                System.out.println("password non null");
                 SHA256 sha256 = new SHA256(password);
                 if (DaoFactory.getCompteDAO().validatePwd(login, sha256.hash)) {
                     loggedIn = true;
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenue", login);
                     //TODO faire apparaitre le profil dans le menu
                 } else {
-                    System.out.println(sha256.hash);
                     loggedIn = false;
                     message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Echec Log in", "Identifiant ou password non reconnus");
                 }
@@ -74,10 +73,25 @@ public class BeanCompte implements Serializable {
         else{
             message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Echec Log in", "identifiant non reconnu");
         }
-
         FacesContext.getCurrentInstance().addMessage(null, message);
         PrimeFaces.current().ajax().addCallbackParam("form:messages", "form:loginDialog");
-
+        return loggedIn;
     }
+
+    public boolean doRegister() throws NoSuchAlgorithmException, NoSuchProviderException, SQLException {
+        FacesMessage message = null;
+        boolean registered = false;
+        if (compte != null && !DaoFactory.getCompteDAO().checkAccountExistenceByMail(compte.getEmail())) {
+            SHA256 sha256 = new SHA256(password);
+            DaoFactory.getCompteDAO().insert(compte,sha256.hash);
+            registered = true;
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Votre compte a été creer ","Bienvenue" + compte.getPrenom());
+        }
+        else{
+            message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Echec Log in", "echec insert");
+        }
+        return registered;
+    }
+
 }
 

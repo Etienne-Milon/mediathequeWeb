@@ -2,10 +2,8 @@ package fr.cuib.mediathequeweb.dao;
 
 import fr.cuib.mediathequeweb.metier.Compte;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class CompteDAO extends DAO<Compte, Compte>{
@@ -43,7 +41,25 @@ public class CompteDAO extends DAO<Compte, Compte>{
         Compte compte = new Compte();
         ResultSet rs;
         try(PreparedStatement stmt = connexion.prepareStatement(query)){
-            stmt.setLong(1, id);
+            stmt.setInt(1, id);
+            stmt.execute();
+            rs = stmt.getResultSet();
+            if (rs.next()){
+                rs.close();
+                return true;
+            }
+            return false;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public Boolean checkAccountExistenceByMail(String mail) {
+        String query = "SELECT * FROM COMPTE WHERE EMAIL = ?";
+        Compte compte = new Compte();
+        ResultSet rs;
+        try(PreparedStatement stmt = connexion.prepareStatement(query)){
+            stmt.setString(1, mail);
             stmt.execute();
             rs = stmt.getResultSet();
             if (rs.next()){
@@ -57,8 +73,9 @@ public class CompteDAO extends DAO<Compte, Compte>{
         }
     }
 
-    public Compte getByIdOrMail(String string){
-        String query = "SELECT * FROM COMPTE WHERE NUM_ADHERENT = ? or email = ?";
+
+    public Compte getByMail(String string){
+        String query = "SELECT * FROM COMPTE WHERE email = ?";
         Compte compte = new Compte();
         ResultSet rs;
         try(PreparedStatement stmt = connexion.prepareStatement(query)){
@@ -79,7 +96,6 @@ public class CompteDAO extends DAO<Compte, Compte>{
         }
         return compte;
     }
-
 
     public boolean validatePwd(String num_adherent, String hash){
         String query = "SELECT * FROM COMPTE WHERE NUM_ADHERENT = ? AND passwordhash = ?";
@@ -106,6 +122,25 @@ public class CompteDAO extends DAO<Compte, Compte>{
         }
     }
 
+    public boolean insert(Compte compte, String hash) throws SQLException {
+        String query = "INSERT INTO COMPTE (NOM,PRENOM,ADRESSE,CODEPOSTAL,EMAIL,PASSWORDHASH,DATE_DEBUT_ADHESION,DATE_FIN_ADHESION) VALUES (?,?,?,?,?,?,?,?)";
+        try(PreparedStatement stmt = connexion.prepareStatement(query)){
+            stmt.setString(1, compte.getNom());
+            stmt.setString(2, compte.getPrenom());
+            stmt.setString(3,compte.getAdresse());
+            stmt.setString(4, compte.getCodePostal());
+            stmt.setString(5,compte.getEmail());
+            stmt.setString(6,hash);
+            stmt.setDate(7, Date.valueOf(LocalDate.now()));
+            stmt.setDate(8,Date.valueOf(LocalDate.now().plusYears(1)));
+            stmt.execute();
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     @Override
     public Compte getById(long ean13) {
@@ -122,6 +157,11 @@ public class CompteDAO extends DAO<Compte, Compte>{
     }
 
     @Override
+    public boolean insert(Compte objet) throws SQLException {
+        return false;
+    }
+
+    @Override
     public boolean delete(Compte object) {
         return false;
     }
@@ -131,8 +171,4 @@ public class CompteDAO extends DAO<Compte, Compte>{
         return false;
     }
 
-    @Override
-    public boolean insert(Compte objet) throws SQLException {
-        return false;
-    }
 }

@@ -70,4 +70,6 @@ public class Compte implements Serializable{
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }

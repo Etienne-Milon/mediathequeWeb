@@ -6,7 +6,6 @@ import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 
 public class SHA256 {
-
     public String hash;
 
     public SHA256(String passwordToHash) throws NoSuchAlgorithmException, NoSuchProviderException {

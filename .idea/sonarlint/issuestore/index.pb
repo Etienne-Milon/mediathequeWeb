@@ -85,3 +85,16 @@ Q
 !src/main/webapp/WEB-INF/beans.xml,8\3\83008b1a88ba03a2548bb5b9ad0768c6c307d36c
 X
 (src/main/webapp/WEB-INF/faces-config.xml,9\2\921ab541b29cd2aba50bbba38a0af79890ebe16a
+O
+src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+i
+9src/main/java/fr/cuib/mediathequeweb/dao/CUIBConnect.java,5\4\54ad54b6ddb36b732b55be131b65710b0a0f6c2e
+a
+1src/main/java/fr/cuib/mediathequeweb/dao/DAO.java,c\f\cf7639856133ce216abd3aa1e0b1a6cf29436730
+h
+8src/main/java/fr/cuib/mediathequeweb/dao/ArticleDAO.java,7\4\7420e1a79b0256036ef08d8da7f02979af23ee41
+h
+8src/main/java/fr/cuib/mediathequeweb/dao/DaoFactory.java,4\b\4b4b0c74abae311fc18d83af0c2f3ff8d680d480
