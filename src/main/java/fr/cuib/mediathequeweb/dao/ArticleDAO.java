@@ -60,8 +60,7 @@ public class ArticleDAO extends DAO<Article, ArticleSearch>
             cStmt.setInt(2, articleSearch.getFormat().getId());
             cStmt.setInt(3, articleSearch.getGenre().getId());
             cStmt.setInt(4, articleSearch.getMediatheque().getId());
-//            cStmt.setInt(5, articleSearch.getPage() + 1);
-//            cStmt.setInt(6, articleSearch.getLgPage());
+
             cStmt.execute();
             rs = cStmt.getResultSet();
 

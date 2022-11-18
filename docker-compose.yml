@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  database:
+    container_name: cuibFinal
+    image: youssefr/cuib_db
+
+
+  app:
+    container_name: ApplicationCUIB
+    image: youssefr/cuib_app
+    ports:
+      - "8080:8080"

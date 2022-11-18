@@ -8,7 +8,9 @@ import java.sql.DriverManager;
 public class CUIBConnect {
 
     private static Connection connexion;
+//    private static String SERVER_NAME = "database";
     private static String SERVER_NAME = "127.0.0.1";
+//    private static int PORT_NUMBER = 1433;
     private static int PORT_NUMBER = 1404;
     private static String DATABASE_NAME = "CUIB";
     private static String USER = "sa";

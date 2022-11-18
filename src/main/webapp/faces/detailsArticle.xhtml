@@ -14,11 +14,13 @@
     <ui:define name="titre">Communauté urbaine de Issyonlit-Bocou - Détails de l'article</ui:define>
 
     <ui:define name="contenu">
+        #{beanArticle.displayParam()}
         <h1 class="titreSection">DETAILS</h1>
         <div class="card" style="display: flex; justify-content: center; margin: 5vh 0 5vh 0">
             <div style="display: flex">
-                <img src="https://api.lorem.space/image/movie?w=150&amp;h=220" alt=""/>
-                    #{beanArticle.displayParam()}
+<!--                <img src="https://api.lorem.space/image/movie?w=150&amp;h=220" alt=""/>-->
+                <img style="width: 150px;height: 220px" src="../resources/img/affiches/#{beanArticle.articleSelected.EAN13}.jpg" alt="pas d'image disponible" />
+
                 <p:panelGrid columns="2">
                     <h:outputText value="Titre :"/>
                     <h:outputText value="#{beanArticle.articleSelected.titre}"/>
