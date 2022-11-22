@@ -4,11 +4,15 @@ import fr.cuib.mediathequeweb.dao.CompteDAO;
 import fr.cuib.mediathequeweb.dao.DaoFactory;
 import fr.cuib.mediathequeweb.metier.Compte;
 import fr.cuib.mediathequeweb.metier.SHA256;
+import fr.cuib.mediathequeweb.security.ApplicationBean;
+import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import jakarta.security.enterprise.credential.Credential;
+import org.glassfish.soteria.identitystores.hash.Pbkdf2PasswordHashImpl;
 import org.primefaces.PrimeFaces;
 
 import java.io.Serializable;
@@ -23,9 +27,12 @@ public class BeanCompte implements Serializable {
     private String login;
     private String password;
     private Compte compte;
-    public BeanCompte() {
+
+    @PostConstruct
+    public void init(){
         compte = new Compte();
     }
+
 
     public Compte getCompte() {
         return compte;
@@ -51,47 +58,43 @@ public class BeanCompte implements Serializable {
         this.password = password;
     }
 
-    public boolean doLogin() throws NoSuchAlgorithmException, NoSuchProviderException {
+    public void login(){
         FacesMessage message = null;
-        boolean loggedIn = false;
-        if (login != null && DaoFactory.getCompteDAO().checkAccountExistence(Integer.parseInt(login))){
-            if (password != null) {
-                SHA256 sha256 = new SHA256(password);
-                if (DaoFactory.getCompteDAO().validatePwd(login, sha256.hash)) {
-                    loggedIn = true;
-                    message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenue", login);
-                    //TODO faire apparaitre le profil dans le menu
-                } else {
-                    loggedIn = false;
-                    message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Echec Log in", "Identifiant ou password non reconnus");
-                }
-            } else {
-                loggedIn = false;
-                message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Echec Log in", "Password manquant");
-            }
-        }
-        else{
-            message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Echec Log in", "identifiant non reconnu");
+        ApplicationBean ab = new ApplicationBean();
+        ab.setPbkdf2PasswordHash(new Pbkdf2PasswordHashImpl());
+        Compte cpt = DaoFactory.getCompteDAO().getById(Integer.parseInt(login));
+        if(ab.passwordVerify(password, cpt.getPassword())){
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenue", login);
+        }else{
+            message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Echec Log in", "abc");
         }
         FacesContext.getCurrentInstance().addMessage(null, message);
         PrimeFaces.current().ajax().addCallbackParam("form:messages", "form:loginDialog");
-        return loggedIn;
     }
 
-    public boolean doRegister() throws NoSuchAlgorithmException, NoSuchProviderException, SQLException {
+    public void register() throws SQLException {
         FacesMessage message = null;
-        boolean registered = false;
-        if (compte != null && !DaoFactory.getCompteDAO().checkAccountExistenceByMail(compte.getEmail())) {
-            SHA256 sha256 = new SHA256(password);
-            DaoFactory.getCompteDAO().insert(compte,sha256.hash);
-            registered = true;
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Votre compte a été creer ","Bienvenue" + compte.getPrenom());
+        ApplicationBean ab = new ApplicationBean();
+        ab.setPbkdf2PasswordHash(new Pbkdf2PasswordHashImpl());
+        String passwordHash = ab.passwordHash(password);
+
+        if(DaoFactory.getCompteDAO().checkAccountExistenceByMail(compte.getEmail())){
+            message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Compte déjà existant", "");
+        }else{
+            DaoFactory.getCompteDAO().insert(compte, passwordHash);
+            message = new FacesMessage(FacesMessage.SEVERITY_WARN, "En attente de confirmation", "Un lien vient de vous être envoyer par mail, veuillez le confirmation afin de valider la création de votre compte");
         }
-        else{
-            message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Echec Log in", "echec insert");
-        }
-        return registered;
+
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        PrimeFaces.current().ajax().addCallbackParam("form:messages", "form:register");
     }
 
+    public void redirect(String url){
+        try{
+            FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
 

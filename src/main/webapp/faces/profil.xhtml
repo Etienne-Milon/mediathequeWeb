@@ -10,21 +10,23 @@
 
 
 <ui:composition template="templates/layouts.xhtml">
+    <f:view beforePhase="#{menuBean.addItemToMenuModel('Profil', './profil.xhtml', true)}"/>
     <ui:define name="titre">Communauté urbaine de Issyonlit-Bocou - Mon profil</ui:define>
     <ui:define name="contenu">
-        <div style="height: 100vh; display: flex; flex-direction: column; align-items: center;padding: 10vw 10vw 0 10vw">
-            <div>
-                <h1>MODIFIER LE PROFIL</h1>
+        <h1 style="text-align: center; margin-top: 5vh">MODIFIER LE PROFIL</h1>
+        <hr/>
+        <div style="height: 100vh; display: flex; padding: 3vw 30vw 0 30vw">
+            <div style="padding-right: 5vw">
+                <img src="https://via.placeholder.com/256" alt=""/>
+                <p:commandButton value="Modifier" styleClass="ui-button-secondary" style="width:100%; background-color: #506d90 !important;"/>
             </div>
-            <div>
-                <div style="width: 30%">
-                    <img src="https://via.placeholder.com/256" alt=""/>
-                </div>
-                <div style="width: 70%;">
-                    <p:inplace>
-                        <p:inputText value="Quentin"/>
-                    </p:inplace>
-                </div>
+            <div style="display: flex; flex-direction: column;flex-grow: 100">
+                <p:inplace>
+                    <p:inputText style="width: 100%; font-size: 30px" value="Quentin"/>
+                </p:inplace>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur assumenda ea hic, minus non praesentium repellendus soluta. Necessitatibus nemo, nisi officia quia reprehenderit tempora vel. Adipisci aspernatur, blanditiis dolorum fugiat ipsa iusto molestias natus provident ratione rem suscipit ullam velit, voluptatibus. Accusamus adipisci aliquam animi at consequatur, ea est excepturi exercitationem explicabo, facere fuga illo illum iste itaque labore magnam minima mollitia nemo nostrum odit optio quas quo repellat sapiente sunt veniam vero voluptas. Atque corporis cum facere hic, impedit itaque labore numquam officiis praesentium qui quibusdam quisquam recusandae suscipit, veritatis voluptatibus! Accusantium dolore ex nulla officiis quae, quos veniam.</p>
+                <p:commandButton value="Valider" styleClass="ui-button-secondary" style="align-self: flex-end; margin-top: 5vh; background-color: #506d90 !important;"/>
+
             </div>
         </div>
     </ui:define>

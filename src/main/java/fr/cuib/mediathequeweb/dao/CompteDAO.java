@@ -12,7 +12,7 @@ public class CompteDAO extends DAO<Compte, Compte>{
         super(connexion);
     }
 
-    public Boolean getById(int id) {
+    public Compte getById(int id) {
         String query = "SELECT * FROM COMPTE WHERE NUM_ADHERENT = ?";
         Compte compte = new Compte();
         ResultSet rs;
@@ -25,15 +25,15 @@ public class CompteDAO extends DAO<Compte, Compte>{
                 compte.setNom(rs.getString(2));
                 compte.setPrenom(rs.getString(3));
                 compte.setAdresse(rs.getString(4));
-                compte.setEmail(rs.getString(5));
-                compte.setPassword(rs.getString(6));
+                compte.setCodePostal(rs.getString(5));
+                compte.setEmail(rs.getString(6));
+                compte.setPassword(rs.getString(7));
             }
             rs.close();
-            return true;
         }catch (Exception e){
             e.printStackTrace();
-            return false;
         }
+        return compte;
     }
 
     public Boolean checkAccountExistence(int id) {

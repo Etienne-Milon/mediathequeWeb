@@ -43,7 +43,7 @@
                         <h:inputText id="login" value="#{beanCompte.login}" required="true" label="login"/>
                         <h:outputLabel for="password" value="Password:"/>
                         <h:inputSecret id="password" value="#{beanCompte.password}" required="true" label="mot de passe"/>
-                        <p:commandButton value="Se connecter" action="#{beanCompte.doLogin}" ajax="false"/>
+                        <p:commandButton value="Se connecter" action="#{beanCompte.login}" ajax="false"/>
                     </h:panelGrid>
                 </p:dialog>
             </div>

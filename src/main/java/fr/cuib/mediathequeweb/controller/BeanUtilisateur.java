@@ -1,6 +1,7 @@
 package fr.cuib.mediathequeweb.controller;
 
 import fr.cuib.mediathequeweb.metier.Utilisateur;
+import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 
@@ -10,9 +11,12 @@ import java.io.Serializable;
 public class BeanUtilisateur implements Serializable {
     private Utilisateur utilisateur;
 
-    public BeanUtilisateur() {
-        utilisateur =new Utilisateur();
+
+    @PostConstruct
+    public void init(){
+        utilisateur = new Utilisateur();
     }
+
 
     public Utilisateur getUtilisateur() {
         return utilisateur;
