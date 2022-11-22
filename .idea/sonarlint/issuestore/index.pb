@@ -55,8 +55,6 @@ j
 :src/main/java/fr/cuib/mediathequeweb/metier/Reference.java,7\b\7b3439830f7574a588fca8b0e131ecdc153d87a0
 f
 6src/main/java/fr/cuib/mediathequeweb/metier/Serie.java,1\6\16be7bf5976ec92975fb9f4957904f07c93d2389
-_
-/.idea/artifacts/mediathequeWeb_war_exploded.xml,5\6\56b873a1758213b05f67f887446c63b37411a262
 ]
 -src/main/webapp/faces/templates/contenu.xhtml,c\3\c3f8e1132597af1a7d33265a585a0e5d74f4c655
 ]
@@ -81,12 +79,8 @@ g
 7src/main/java/fr/cuib/mediathequeweb/dao/FormatDAO.java,9\0\9003123278aaded4fd0b1c44607ca7db377516dd
 k
 ;src/main/java/fr/cuib/mediathequeweb/dao/ExemplaireDAO.java,4\e\4e6c4a8b54154b60e1751c4f4b2a013354beee7c
-Q
-!src/main/webapp/WEB-INF/beans.xml,8\3\83008b1a88ba03a2548bb5b9ad0768c6c307d36c
 X
 (src/main/webapp/WEB-INF/faces-config.xml,9\2\921ab541b29cd2aba50bbba38a0af79890ebe16a
-O
-src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
@@ -96,3 +90,13 @@ h
 8src/main/java/fr/cuib/mediathequeweb/dao/ArticleDAO.java,7\4\7420e1a79b0256036ef08d8da7f02979af23ee41
 h
 8src/main/java/fr/cuib/mediathequeweb/dao/DaoFactory.java,4\b\4b4b0c74abae311fc18d83af0c2f3ff8d680d480
+Q
+!src/main/webapp/faces/index.xhtml,9\d\9d406a308083c3ecfd41ad80a095df42b2535b1c
+Z
+*src/main/webapp/faces/templates/menu.xhtml,d\6\d6f7c1d176485b31b3c7d77abe77f25ed0182cf6
+l
+<src/main/java/fr/cuib/mediathequeweb/dao/UtilisateurDAO.java,5\b\5b8976b362fcfb81d124c6da1fac9c86cd3402ad
+R
+"src/main/webapp/faces/profil.xhtml,1\e\1e0952db9be738f2abcc1f39c76d2fb2b3129bed
+W
+'src/main/webapp/faces/inscription.xhtml,5\f\5f6a1c0d52cef0c629f4297c333f6f4582899cc7
