@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+
+<ui:composition template="templates/layouts.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+    <f:view beforePhase="#{menuBean.addItemToMenuModel('Détails', './detailsArticle.xhtml', true)}"/>
+    <ui:define name="titre">Communauté urbaine de Issyonlit-Bocou - Détails de l'article</ui:define>
+
+
+    <ui:define name="contenu">
+
+        <div style="margin: 3vh 10vh">
+            <h2>Formulaire d'inscription :</h2><br/>
+            <h:form id="register" style="width: 50%">
+                <p:growl id="messages" showDetail="true" />
+                <div style="margin-bottom: 3vh">
+                    <div style="display: flex; justify-content: space-between">
+                        <p:outputLabel value="Nom :" for="nom"/>
+                        <p:inputText id="nom" value="#{beanCompte.compte.nom}" required="true"
+                                     requiredMessage=" Le nom est obligatoire"
+                                     validatorMessage="Le prénom doit avoir une longueur comprise entre 1 et 50 caractères et ne comporter que des caractères!">
+                            <f:validateRegex pattern="^[a-zA-z]{1,50}$"/>
+                        </p:inputText>
+                    </div>
+                    <p:message for="nom"/>
+                </div>
+
+                <div style="margin-bottom: 3vh">
+                    <div style="display: flex; justify-content: space-between">
+                        <p:outputLabel value="Prénom :" for="prenom"/>
+                        <p:inputText id="prenom" value="#{beanCompte.compte.prenom}" required="true"
+                                     requiredMessage=" Le prénom est obligatoire"
+                                     validatorMessage="Le prénom doit avoir une longueur comprise entre 1 et 50 caractères et ne comporter que des caractères!">
+                            <f:validateRegex pattern="^[a-zA-z]{1,50}$"/>
+                        </p:inputText>
+                    </div>
+                    <p:message for="prenom"/>
+                </div>
+
+                <div style="margin-bottom: 3vh">
+                    <div style="display: flex; justify-content: space-between">
+
+                        <p:outputLabel value="Adresse :" for="adresse"/>
+                        <p:inputText id="adresse" value="#{beanCompte.compte.adresse}" required="true"
+                                     requiredMessage=" L'adresse est obligatoire"
+                                     validatorMessage="Le format de l'adresse n'est pas valide">
+                            <f:validateRegex
+                                    pattern="^([1-9][0-9]*(?:-[1-9][0-9]*)*)[\s,-]+(?:(bis|ter|qua)[\s,-]+)?([\w]+[\-\w]*)[\s,]+([-\w].+)$"/>
+                        </p:inputText>
+                    </div>
+                    <p:message for="adresse"/>
+                </div>
+
+                <div style="margin-bottom: 3vh">
+                    <div style="display: flex; justify-content: space-between">
+
+                        <p:outputLabel value="Code postal :" for="codePostal"/>
+                        <p:inputText id="codePostal" value="#{beanCompte.compte.codePostal}" required="true"
+                                     requiredMessage=" Le code postal est obligatoire"
+                                     validatorMessage="Le code postal doit comporter 5 chiffres">
+                            <f:validateRegex pattern="^((0[1-9])|([1-8][0-9])|(9[0-5]))[0-9]{3}$"/>
+                        </p:inputText>
+                    </div>
+                    <p:message for="codePostal"/>
+                </div>
+
+                <p:commandButton value="Envoyer" update="@form"  action="#{userBean.Creer}" styleClass="ui-button-raised ui-button-success"
+                                 style="width: 8vw; margin-top: 4vh"/>
+            </h:form>
+        </div>
+
+
+    </ui:define>
+</ui:composition>
+</html>

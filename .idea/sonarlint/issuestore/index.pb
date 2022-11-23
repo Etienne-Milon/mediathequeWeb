@@ -90,9 +90,5 @@ h
 8src/main/java/fr/cuib/mediathequeweb/dao/ArticleDAO.java,7\4\7420e1a79b0256036ef08d8da7f02979af23ee41
 h
 8src/main/java/fr/cuib/mediathequeweb/dao/DaoFactory.java,4\b\4b4b0c74abae311fc18d83af0c2f3ff8d680d480
-Q
-!src/main/webapp/faces/index.xhtml,9\d\9d406a308083c3ecfd41ad80a095df42b2535b1c
 Z
 *src/main/webapp/faces/templates/menu.xhtml,d\6\d6f7c1d176485b31b3c7d77abe77f25ed0182cf6
-R
-"src/main/webapp/faces/profil.xhtml,1\e\1e0952db9be738f2abcc1f39c76d2fb2b3129bed

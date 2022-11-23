@@ -9,7 +9,7 @@ public class Email {
         String from = "service@cuib.fr";
         final String username = "5d31380e4541f3";
         final String password = "42270df7d6e3c5";
-
+        System.out.println(body);
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.mailtrap.io");
         props.put("mail.smtp.socketFactory.port", "2525");
@@ -30,8 +30,8 @@ public class Email {
             message.addHeader("Content-Type", "text/html; charset=UTF-8");
             message.setFrom(new InternetAddress(from));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
-            message.setSubject(subject);
-            message.setText(body);
+            message.setSubject(subject,"UTF-8");
+            message.setText(body,"UTF-8");
             Transport.send(message);
             System.out.println("Email envoyé");
         } catch (MessagingException e) {
