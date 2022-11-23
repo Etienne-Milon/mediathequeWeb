@@ -4,12 +4,15 @@ import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Named
 @ApplicationScoped
 public class ApplicationBean {
 
@@ -19,9 +22,9 @@ public class ApplicationBean {
     Pbkdf2PasswordHash pbkdf2PasswordHash;
 
     @PostConstruct
-    private void initialize() {
+    public void initialize() {
         base = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
-        HttpServletRequest httpServletRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         absolutePath = httpServletRequest.getRequestURL().toString();
         absolutePath = absolutePath.substring(0, absolutePath.lastIndexOf("/"));
         Map<String, String> parameters = new HashMap<>();
