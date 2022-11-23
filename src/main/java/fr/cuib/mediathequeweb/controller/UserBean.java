@@ -2,15 +2,21 @@ package fr.cuib.mediathequeweb.controller;
 
 import fr.cuib.mediathequeweb.security.ApplicationBean;
 
+import fr.cuib.mediathequeweb.security.Email;
+import fr.cuib.mediathequeweb.security.SecurityTools;
 import jakarta.inject.Inject;
-import jakarta.validation.constraints.Email;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.Serializable;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class userBean implements Serializable {
+public class UserBean implements Serializable {
 
     @Inject
     ApplicationBean applicationBean;
@@ -19,7 +25,7 @@ public class userBean implements Serializable {
     String password;
 
 
-    public void Creer(){
+    public void Creer() throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MINUTE,10);
         Date expiration = calendar.getTime();

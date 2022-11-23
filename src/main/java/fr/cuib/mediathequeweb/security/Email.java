@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Properties;
 
 public class Email {
-    public static void sendEmil(String toEmail,String subject, String body){
+    public static void sendEmail(String toEmail,String subject, String body){
         final String fromEmail = "81a7f647f039c6";
         final String password = "e833d6a56d482d";
 
