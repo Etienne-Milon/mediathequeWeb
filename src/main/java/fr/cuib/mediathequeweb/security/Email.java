@@ -1,44 +1,49 @@
 package fr.cuib.mediathequeweb.security;
 
 import jakarta.mail.*;
-import jakarta.mail.internet.InternetAddress;
-import jakarta.mail.internet.MimeMessage;
-
-import java.net.URI;
-import java.net.URISyntaxException;
-
+import jakarta.mail.internet.*;
 import java.util.Properties;
 
 public class Email {
-    public static void sendEmail(String toEmail,String subject, String body){
-
-        final String fromEmail = "81a7f647f039c6";
-        final String password = "e833d6a56d482d";
-
+    public static void sendEmail(String toEmail, String subject, String body){
+        //provide sender's email ID
+        String from = "service@cuib.fr";
+        //provide Mailtrap's username
+        final String username = "5d31380e4541f3";
+        //provide Mailtrap's password
+        final String password = "42270df7d6e3c5";
+        //configure Mailtrap's SMTP server details
         Properties props = new Properties();
-        props.put("mail.smtp.auth","true");
-        props.put("mail.smtp.starttls.enable","true");
-        props.put("mail.smtp.host","smtp.mailtrap.io");
-        props.put("mail.smtp.port","2525");
-
-        Session mail = Session.getInstance(props, new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication(){
-                return new PasswordAuthentication(fromEmail,password);
-            }
-        }
-        );
+        props.put("mail.smtp.host", "smtp.mailtrap.io");
+        props.put("mail.smtp.socketFactory.port", "2525");
+        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "2525");
+//        props.put("mail.debug", "true");
+        //create the Session object
+        Session session = Session.getInstance(props,
+                new jakarta.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
         try {
-            Message message = new MimeMessage(mail);
-            message.setFrom(new InternetAddress("authentification@CUIB.com"));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
-            message.setSubject("Ouai test test 1, 2");
-            message.setText("Bonjour, cliquer sur le lien pour finaliser l'inscription"
-                + new URI("http://localhost:8080/CUIB/faces/index.xhtml"));
+            //create a MimeMessage object
+            Message message = new MimeMessage(session);
+            //set From email field
+            message.setFrom(new InternetAddress(from));
+            //set To email field
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(toEmail));
+            //set email subject field
+            message.setSubject(subject);
+            //set the content of the email message
+            message.setText(body);
+            //send the email message
+            Transport.send(message);
+            System.out.println("Email envoyé");
         } catch (MessagingException e) {
-        System.out.println("problème durant l'envoi");
-        throw new RuntimeException(e);
-    } catch (URISyntaxException e) {
-        throw new RuntimeException(e);
-    }
+            throw new RuntimeException(e);
+        }
     }
 }
