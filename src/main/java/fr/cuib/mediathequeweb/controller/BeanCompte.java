@@ -1,23 +1,18 @@
 package fr.cuib.mediathequeweb.controller;
 
-import fr.cuib.mediathequeweb.dao.CompteDAO;
+
 import fr.cuib.mediathequeweb.dao.DaoFactory;
 import fr.cuib.mediathequeweb.metier.Compte;
-import fr.cuib.mediathequeweb.metier.SHA256;
+
 import fr.cuib.mediathequeweb.security.ApplicationBean;
 import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
-import jakarta.security.enterprise.credential.Credential;
 import org.glassfish.soteria.identitystores.hash.Pbkdf2PasswordHashImpl;
 import org.primefaces.PrimeFaces;
-
 import java.io.Serializable;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.sql.SQLException;
 
 @Named("beanCompte")
