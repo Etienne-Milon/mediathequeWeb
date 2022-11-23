@@ -4,9 +4,11 @@ import fr.cuib.mediathequeweb.security.ApplicationBean;
 
 import fr.cuib.mediathequeweb.security.Email;
 import fr.cuib.mediathequeweb.security.SecurityTools;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import org.glassfish.soteria.identitystores.hash.Pbkdf2PasswordHashImpl;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -19,7 +21,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 @Named
-@SessionScoped
+@RequestScoped
 public class UserBean implements Serializable {
 
     public ApplicationBean getApplicationBean() {
@@ -54,7 +56,7 @@ public class UserBean implements Serializable {
         this.password = password;
     }
 
-    @Inject
+
     ApplicationBean applicationBean;
     String login;
     String email;
@@ -62,6 +64,8 @@ public class UserBean implements Serializable {
 
 
     public void Creer() throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+        applicationBean = new ApplicationBean();
+        applicationBean.setPbkdf2PasswordHash(new Pbkdf2PasswordHashImpl());
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MINUTE,10);
         Date expiration = calendar.getTime();
