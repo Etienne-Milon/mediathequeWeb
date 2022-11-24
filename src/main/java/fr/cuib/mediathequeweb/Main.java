@@ -25,22 +25,18 @@ public class Main {
             throw new RuntimeException(e);
         }
     }
-
     static String compteEncoded = "7YNfUFBGgxrM72TdazqGNs2FJFbIXn-_HGVWwEpyYFPuOFCHB6WDenynqET6CdIdsuVzMlbI7fQO-WqAXiiWsHuKT_ZB9T-nTQhwWfBDnV6YIhZDHMCM6bO_ZRJ_f3Bsg0S7fQciL3w9Gt-gsME4WEQhFKw6ZytKNP0nWMXdqkL1ZEjdZ0G9bPQa30c1fwAdeTube6bce1IIH4q_ZmacZxApjVDrlB_d2GkdPYM47kQ=";
+    static String urlDecoded2 ="/l=bdgsvhvh&c=30403&e=quentinos@cuib.fr&p=PBKDF2WithHmacSHA256:2048:xvBIDioMWQX5fqyAR/NLW+GgFO2QoZGGvtsa0OIlrvs=:rPi5fcpZilNfhzfpUOjYQ00dgoYuFRE9mHJoO1PP8u0=&d=23-11-22-14:13:27";
+
     public static void Test() throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
         System.out.println(full);
         String query = full.getQuery();
         String compte = query.split("=")[1];
-        String urlDecode = SecurityTools.decrypt(compte);
-        System.out.println(urlDecode);
-        System.out.println(buildQueryMap(urlDecode));
+        String urlDecoded = SecurityTools.decrypt(compte);
+        System.out.println(urlDecoded);
+        System.out.println(buildQueryMap(urlDecoded));
+        System.out.println(buildQueryMap(urlDecoded2.substring(1)));
 
-//        String Usrlogin = String.valueOf(urlDecode.split("\\?")[0].substring(0,1));
-//        String UsrEmail = String.valueOf(urlDecode.split("e=")[1]);
-//        long checksum = Long.parseLong(String.valueOf(urlDecode.split("c=")));
-//        if (SecurityTools.checksum(Usrlogin+UsrEmail) == checksum){
-//            String UsrHashedPsw = String.valueOf(urlDecode.split("p=")[1]);
-//            System.out.println(UsrHashedPsw);
     }
 
     private static Map<String, String> buildQueryMap(String query) {
@@ -52,8 +48,9 @@ public class Main {
             String[] currentParam = param.split("=");
             if (currentParam.length != 2) {
                 String name = currentParam[0];
-                String value = query.substring(query.lastIndexOf("p=")+2,query.lastIndexOf("=&"));
+                String value = query.substring(query.indexOf("p=")+2,query.indexOf("=&")+1);
                 map.put(name, value);
+                continue;
             }
             String name = currentParam[0];
             String value = currentParam[1];

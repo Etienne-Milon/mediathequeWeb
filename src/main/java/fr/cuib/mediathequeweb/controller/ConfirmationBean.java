@@ -1,6 +1,5 @@
 package fr.cuib.mediathequeweb.controller;
 
-
 import fr.cuib.mediathequeweb.dao.DaoFactory;
 import fr.cuib.mediathequeweb.metier.Compte;
 
@@ -106,10 +105,7 @@ public class ConfirmationBean implements Serializable {
         FacesContext fc = FacesContext.getCurrentInstance();
         Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
         String url = params.get("compte");
-        String urlDecode = SecurityTools.decrypt(url);
-        String Usrlogin = String.valueOf(url.split("")[0]);
-        String Usrpsw = String.valueOf(url.split("")[1]);
-        SecurityTools.checksum(Usrlogin+Usrpsw );
+        String urlDecoded = SecurityTools.decrypt(url);
 
     }
 }
