@@ -5,6 +5,7 @@ import fr.cuib.mediathequeweb.dao.DaoFactory;
 import fr.cuib.mediathequeweb.metier.Compte;
 
 import fr.cuib.mediathequeweb.security.ApplicationBean;
+import fr.cuib.mediathequeweb.security.SecurityTools;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
@@ -12,12 +13,19 @@ import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import org.glassfish.soteria.identitystores.hash.Pbkdf2PasswordHashImpl;
 import org.primefaces.PrimeFaces;
-import java.io.Serializable;
-import java.sql.SQLException;
 
-@Named("beanCompte")
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import java.io.Serializable;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+import java.util.Map;
+
+@Named
 @SessionScoped
-public class BeanCompte implements Serializable {
+public class ConfirmationBean implements Serializable {
 
     private String login;
     private String password;
@@ -90,6 +98,19 @@ public class BeanCompte implements Serializable {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void recuperer() throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+        ApplicationBean ab = new ApplicationBean();
+        ab.setPbkdf2PasswordHash(new Pbkdf2PasswordHashImpl());
+        FacesContext fc = FacesContext.getCurrentInstance();
+        Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
+        String url = params.get("compte");
+        String urlDecode = SecurityTools.decrypt(url);
+        String Usrlogin = String.valueOf(url.split("")[0]);
+        String Usrpsw = String.valueOf(url.split("")[1]);
+        SecurityTools.checksum(Usrlogin+Usrpsw );
+
     }
 }
 

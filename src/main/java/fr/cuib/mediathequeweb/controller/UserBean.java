@@ -4,11 +4,7 @@ import fr.cuib.mediathequeweb.security.ApplicationBean;
 
 import fr.cuib.mediathequeweb.security.Email;
 import fr.cuib.mediathequeweb.security.SecurityTools;
-import jakarta.el.MethodExpression;
 import jakarta.enterprise.context.RequestScoped;
-import jakarta.enterprise.context.SessionScoped;
-import jakarta.faces.context.FacesContext;
-import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import org.glassfish.soteria.identitystores.hash.Pbkdf2PasswordHashImpl;
 
@@ -21,7 +17,6 @@ import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Map;
 
 @Named
 @RequestScoped
@@ -82,19 +77,6 @@ public class UserBean implements Serializable {
         String urlEncode = SecurityTools.encrypt(url);
         String valideUrl = applicationBean.getAbsolutePath() + "/confirm.jsf?compte=" + urlEncode;
         Email.sendEmail(email,"Confirmation",valideUrl);
-    }
-
-    public void Recuperer() throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
-        ApplicationBean ab = new ApplicationBean();
-        ab.setPbkdf2PasswordHash(new Pbkdf2PasswordHashImpl());
-        FacesContext fc = FacesContext.getCurrentInstance();
-        Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
-        String url = params.get("compte");
-        String urlDecode = SecurityTools.decrypt(url);
-        String Usrlogin = String.valueOf(url.split("")[0]);
-        String Usrpsw = String.valueOf(url.split("")[1]);
-        SecurityTools.checksum(Usrlogin+Usrpsw );
-
     }
 
 }
