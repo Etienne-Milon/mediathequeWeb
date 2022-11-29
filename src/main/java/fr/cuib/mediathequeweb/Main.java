@@ -33,8 +33,6 @@ public class Main {
         String query = full.getQuery();
         String compte = query.split("=")[1];
         String urlDecoded = SecurityTools.decrypt(compte);
-        System.out.println(urlDecoded);
-        System.out.println(buildQueryMap(urlDecoded));
         System.out.println(buildQueryMap(urlDecoded2.substring(1)));
 
     }

@@ -42,4 +42,8 @@ public class MenuBean {
         element.setDisabled(disabled);
         this.bar.getElements().add(element);
     }
+    public void addSelectors(){
+
+    }
+
 }
