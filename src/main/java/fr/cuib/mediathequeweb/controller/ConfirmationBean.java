@@ -28,22 +28,6 @@ public class ConfirmationBean implements Serializable {
 
     private String login;
     private String password;
-    private Compte compte;
-
-    @PostConstruct
-    public void init(){
-        compte = new Compte();
-    }
-
-
-    public Compte getCompte() {
-        return compte;
-    }
-
-    public void setCompte(Compte compte) {
-        this.compte = compte;
-    }
-
     public String getLogin() {
         return login;
     }
@@ -80,10 +64,9 @@ public class ConfirmationBean implements Serializable {
         ab.setPbkdf2PasswordHash(new Pbkdf2PasswordHashImpl());
         String passwordHash = ab.passwordHash(password);
 
-        if(DaoFactory.getCompteDAO().checkAccountExistenceByMail(compte.getEmail())){
+        if(DaoFactory.getCompteDAO().checkAccountExistenceByMail(passwordHash)){
             message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Compte déjà existant", "");
         }else{
-            DaoFactory.getCompteDAO().insert(compte, passwordHash);
             message = new FacesMessage(FacesMessage.SEVERITY_WARN, "En attente de confirmation", "Un lien vient de vous être envoyer par mail, veuillez le confirmation afin de valider la création de votre compte");
         }
 

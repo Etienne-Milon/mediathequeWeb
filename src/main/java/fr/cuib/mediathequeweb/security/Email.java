@@ -27,15 +27,15 @@ public class Email {
         try {
             MimeMessage message = new MimeMessage(session);
             message.addHeader("Content-Transfer-Encoding", "8bit");
-            message.addHeader("Content-Type", "text/html; charset=UTF-8");
+            message.addHeader("Content-Type", "text/HTML; charset=UTF-8");
             message.setFrom(new InternetAddress(from));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
-            message.setSubject(subject,"UTF-8");
-            message.setText(body,"UTF-8");
+            message.setSubject(subject);
+            message.setContent(body, "text/html");
             Transport.send(message);
             System.out.println("Email envoyé");
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

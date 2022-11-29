@@ -26,7 +26,7 @@
                 <div style="margin-bottom: 3vh">
                     <div style="display: flex; justify-content: space-between">
                         <p:outputLabel value="Nom :" for="nom"/>
-                        <p:inputText id="nom" value="#{confirmationBean.compte.nom}" required="true"
+                        <p:inputText id="nom" value="#{userBean.compte.nom}" required="true"
                                      requiredMessage=" Le nom est obligatoire"
                                      validatorMessage="Le prénom doit avoir une longueur comprise entre 1 et 50 caractères et ne comporter que des caractères!">
                             <f:validateRegex pattern="^[a-zA-z]{1,50}$"/>
@@ -38,7 +38,7 @@
                 <div style="margin-bottom: 3vh">
                     <div style="display: flex; justify-content: space-between">
                         <p:outputLabel value="Prénom :" for="prenom"/>
-                        <p:inputText id="prenom" value="#{confirmationBean.compte.prenom}" required="true"
+                        <p:inputText id="prenom" value="#{userBean.compte.prenom}" required="true"
                                      requiredMessage=" Le prénom est obligatoire"
                                      validatorMessage="Le prénom doit avoir une longueur comprise entre 1 et 50 caractères et ne comporter que des caractères!">
                             <f:validateRegex pattern="^[a-zA-z]{1,50}$"/>
@@ -51,7 +51,7 @@
                     <div style="display: flex; justify-content: space-between">
 
                         <p:outputLabel value="Adresse :" for="adresse"/>
-                        <p:inputText id="adresse" value="#{confirmationBean.compte.adresse}" required="true"
+                        <p:inputText id="adresse" value="#{userBean.compte.adresse}" required="true"
                                      requiredMessage=" L'adresse est obligatoire"
                                      validatorMessage="Le format de l'adresse n'est pas valide">
                             <f:validateRegex
@@ -65,7 +65,7 @@
                     <div style="display: flex; justify-content: space-between">
 
                         <p:outputLabel value="Code postal :" for="codePostal"/>
-                        <p:inputText id="codePostal" value="#{confirmationBean.compte.codePostal}" required="true"
+                        <p:inputText id="codePostal" value="#{userBean.compte.codePostal}" required="true"
                                      requiredMessage=" Le code postal est obligatoire"
                                      validatorMessage="Le code postal doit comporter 5 chiffres">
                             <f:validateRegex pattern="^((0[1-9])|([1-8][0-9])|(9[0-5]))[0-9]{3}$"/>
@@ -74,7 +74,7 @@
                     <p:message for="codePostal"/>
                 </div>
 
-                <p:commandButton value="Envoyer" update="@form"  action="#{userBean.recuperer()}" styleClass="ui-button-raised ui-button-success"
+                <p:commandButton value="Envoyer" update="@form" action="#{userBean.validerCreation()}" styleClass="ui-button-raised ui-button-success"
                                  style="width: 8vw; margin-top: 4vh"/>
             </h:form>
         </div>

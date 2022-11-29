@@ -29,7 +29,7 @@
                     <div style="display: flex; justify-content: space-between">
 
                         <p:outputLabel value="Pseudonyme :" for="pseudonyme"/>
-                        <p:inputText id="pseudonyme" value="#{userBean.login}" required="false"/>
+                        <p:inputText id="pseudonyme" value="#{userBean.utilisateur.nom}" required="false"/>
                     </div>
                     <p:message for="pseudonyme"/>
                 </div>
@@ -38,7 +38,7 @@
                     <div style="display: flex; justify-content: space-between">
 
                         <p:outputLabel value="Email :" for="email"/>
-                        <p:inputText id="email" value="#{userBean.email}" required="true"
+                        <p:inputText id="email" value="#{userBean.compte.email}" required="true"
                                      requiredMessage=" L'adresse mail est obligatoire"
                                      validatorMessage="L'adresse mail est invalide">
                             <f:validateRegex
@@ -52,7 +52,7 @@
                     <div style="display: flex; justify-content: space-between">
 
                         <p:outputLabel for="pwd1" styleClass="col-fixed" value="Mot de passe"/>
-                        <p:password id="pwd1" value="#{userBean.password}" match="pwd2" label="Password 1"
+                        <p:password id="pwd1" value="#{userBean.compte.password}" match="pwd2" label="Password 1"
                                     required="true"
                                     requiredMessage="Le mot de passe est obligatoire"
                                     validatorMessage="Votre mot de passe n'est pas valide!">
@@ -70,7 +70,7 @@
 
                         <p:outputLabel for="pwd2" styleClass="col-fixed"
                                        value="Confirmer mot de passe"/>
-                        <p:password id="pwd2" value="#{userBean.password}" label="Password 2" required="true"
+                        <p:password id="pwd2" value="#{userBean.compte.password}" label="Password 2" required="true"
                                     requiredMessage="La confirmation du mot de passe est obligatoire"
                                     validatorMessage="Votre mot de passe n'est pas valide!">
                             <f:validateRegex
@@ -87,12 +87,10 @@
                 En vous inscrivant, vous acceptez les<a href="index.xhtml"> Conditions d'utilisation </a>
                 et la<a href="index.xhtml"> Politique de confidentialité</a>, notamment l'<a href="index.xhtml">Utilisation des cookies.</a><br/>
 
-                <p:commandButton value="Envoyer" update="@form"  action="#{userBean.Creer}" styleClass="ui-button-raised ui-button-success"
+                <p:commandButton value="Envoyer" update="@form"  action="#{userBean.creer}" styleClass="ui-button-raised ui-button-success"
                                  style="width: 8vw; margin-top: 4vh"/>
             </h:form>
         </div>
-
-
     </ui:define>
 </ui:composition>
 </html>

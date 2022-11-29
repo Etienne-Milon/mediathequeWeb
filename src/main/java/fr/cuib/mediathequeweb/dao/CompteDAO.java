@@ -122,7 +122,8 @@ public class CompteDAO extends DAO<Compte, Compte>{
         }
     }
 
-    public boolean insert(Compte compte, String hash) throws SQLException {
+    @Override
+    public boolean insert(Compte compte) throws SQLException {
         String query = "INSERT INTO COMPTE (NOM,PRENOM,ADRESSE,CODEPOSTAL,EMAIL,PASSWORDHASH,DATE_DEBUT_ADHESION,DATE_FIN_ADHESION) VALUES (?,?,?,?,?,?,?,?)";
         try(PreparedStatement stmt = connexion.prepareStatement(query)){
             stmt.setString(1, compte.getNom());
@@ -130,7 +131,7 @@ public class CompteDAO extends DAO<Compte, Compte>{
             stmt.setString(3,compte.getAdresse());
             stmt.setString(4, compte.getCodePostal());
             stmt.setString(5,compte.getEmail());
-            stmt.setString(6,hash);
+            stmt.setString(6,compte.getPassword());
             stmt.setDate(7, Date.valueOf(LocalDate.now()));
             stmt.setDate(8,Date.valueOf(LocalDate.now().plusYears(1)));
             stmt.execute();
@@ -154,11 +155,6 @@ public class CompteDAO extends DAO<Compte, Compte>{
     @Override
     public ArrayList<Compte> getLike(Compte objet) {
         return null;
-    }
-
-    @Override
-    public boolean insert(Compte objet) throws SQLException {
-        return false;
     }
 
     @Override
